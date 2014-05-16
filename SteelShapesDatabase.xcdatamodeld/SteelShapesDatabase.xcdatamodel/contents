@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AW_Database" representedClassName="AW_Database" syncable="YES">
+        <attribute name="backgroundColor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="designMethodology" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="edition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="organization" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="textColor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="shapeFamilies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AW_ShapeFamily" inverseName="database" inverseEntity="AW_ShapeFamily" syncable="YES"/>
+    </entity>
+    <entity name="AW_Property" representedClassName="AW_Property" syncable="YES">
+        <attribute name="defaultOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="displayType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="imp_units" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imp_value" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="met_units" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="met_value" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="shape" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AW_Shape" inverseName="properties" inverseEntity="AW_Shape" syncable="YES"/>
+    </entity>
+    <entity name="AW_Shape" representedClassName="AW_Shape" syncable="YES">
+        <attribute name="defaultOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="imp_displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imp_key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="met_displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="met_key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="properties" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AW_Property" inverseName="shape" inverseEntity="AW_Property" syncable="YES"/>
+        <relationship name="shapeFamily" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AW_ShapeFamily" inverseName="shapes" inverseEntity="AW_ShapeFamily" syncable="YES"/>
+    </entity>
+    <entity name="AW_ShapeFamily" representedClassName="AW_ShapeFamily" syncable="YES">
+        <attribute name="defaultOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="database" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AW_Database" inverseName="shapeFamilies" inverseEntity="AW_Database" syncable="YES"/>
+        <relationship name="shapes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AW_Shape" inverseName="shapeFamily" inverseEntity="AW_Shape" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AW_ShapeFamily" positionX="-54" positionY="-9" width="128" height="148"/>
+        <element name="AW_Property" positionX="288" positionY="27" width="128" height="193"/>
+        <element name="AW_Shape" positionX="106" positionY="-0" width="128" height="163"/>
+        <element name="AW_Database" positionX="-288" positionY="-9" width="128" height="148"/>
+    </elements>
+</model>

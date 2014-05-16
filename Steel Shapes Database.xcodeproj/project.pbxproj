@@ -19,6 +19,14 @@
 		E7EEF1A41925A8F90075D69B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF18C1925A8F80075D69B /* UIKit.framework */; };
 		E7EEF1AC1925A8F90075D69B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E7EEF1AA1925A8F90075D69B /* InfoPlist.strings */; };
 		E7EEF1AE1925A8F90075D69B /* Steel_Shapes_DatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1AD1925A8F90075D69B /* Steel_Shapes_DatabaseTests.m */; };
+		E7EEF1B91925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1B71925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld */; };
+		E7EEF1C21925AA5D0075D69B /* AW_Database.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1BE1925AA5D0075D69B /* AW_Database.m */; };
+		E7EEF1C31925AA5D0075D69B /* AW_Property.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1BF1925AA5D0075D69B /* AW_Property.m */; };
+		E7EEF1C41925AA5D0075D69B /* AW_Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1C01925AA5D0075D69B /* AW_Shape.m */; };
+		E7EEF1C51925AA5D0075D69B /* AW_ShapeFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1C11925AA5D0075D69B /* AW_ShapeFamily.m */; };
+		E7EEF1CA1925AB430075D69B /* AW_CoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */; };
+		E7EEF1CC1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E7EEF1CB1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
+		E7EEF1D01925B73B0075D69B /* AW_DatabaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +56,20 @@
 		E7EEF1A91925A8F90075D69B /* Steel Shapes DatabaseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Steel Shapes DatabaseTests-Info.plist"; sourceTree = "<group>"; };
 		E7EEF1AB1925A8F90075D69B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7EEF1AD1925A8F90075D69B /* Steel_Shapes_DatabaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Steel_Shapes_DatabaseTests.m; sourceTree = "<group>"; };
+		E7EEF1B81925A98A0075D69B /* SteelShapesDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SteelShapesDatabase.xcdatamodel; sourceTree = "<group>"; };
+		E7EEF1BA1925AA5D0075D69B /* AW_Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_Database.h; sourceTree = "<group>"; };
+		E7EEF1BB1925AA5D0075D69B /* AW_Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_Property.h; sourceTree = "<group>"; };
+		E7EEF1BC1925AA5D0075D69B /* AW_Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_Shape.h; sourceTree = "<group>"; };
+		E7EEF1BD1925AA5D0075D69B /* AW_ShapeFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_ShapeFamily.h; sourceTree = "<group>"; };
+		E7EEF1BE1925AA5D0075D69B /* AW_Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_Database.m; sourceTree = "<group>"; };
+		E7EEF1BF1925AA5D0075D69B /* AW_Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_Property.m; sourceTree = "<group>"; };
+		E7EEF1C01925AA5D0075D69B /* AW_Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_Shape.m; sourceTree = "<group>"; };
+		E7EEF1C11925AA5D0075D69B /* AW_ShapeFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_ShapeFamily.m; sourceTree = "<group>"; };
+		E7EEF1C81925AB430075D69B /* AW_CoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_CoreDataStore.h; sourceTree = "<group>"; };
+		E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_CoreDataStore.m; sourceTree = "<group>"; };
+		E7EEF1CB1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
+		E7EEF1CE1925B73B0075D69B /* AW_DatabaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_DatabaseTableViewController.h; sourceTree = "<group>"; };
+		E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_DatabaseTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +129,8 @@
 		E7EEF18E1925A8F80075D69B /* Steel Shapes Database */ = {
 			isa = PBXGroup;
 			children = (
+				E7EEF1C71925AAA60075D69B /* Core Data */,
+				E7EEF1CD1925B6F80075D69B /* View Controllers */,
 				E7EEF1971925A8F80075D69B /* AW_AppDelegate.h */,
 				E7EEF1981925A8F80075D69B /* AW_AppDelegate.m */,
 				E7EEF19A1925A8F80075D69B /* Images.xcassets */,
@@ -142,6 +166,42 @@
 				E7EEF1AA1925A8F90075D69B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E7EEF1C61925AA640075D69B /* Core Data Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				E7EEF1BA1925AA5D0075D69B /* AW_Database.h */,
+				E7EEF1BE1925AA5D0075D69B /* AW_Database.m */,
+				E7EEF1BD1925AA5D0075D69B /* AW_ShapeFamily.h */,
+				E7EEF1C11925AA5D0075D69B /* AW_ShapeFamily.m */,
+				E7EEF1BC1925AA5D0075D69B /* AW_Shape.h */,
+				E7EEF1C01925AA5D0075D69B /* AW_Shape.m */,
+				E7EEF1BB1925AA5D0075D69B /* AW_Property.h */,
+				E7EEF1BF1925AA5D0075D69B /* AW_Property.m */,
+			);
+			name = "Core Data Managed Objects";
+			sourceTree = "<group>";
+		};
+		E7EEF1C71925AAA60075D69B /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				E7EEF1C61925AA640075D69B /* Core Data Managed Objects */,
+				E7EEF1B71925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld */,
+				E7EEF1CB1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
+				E7EEF1C81925AB430075D69B /* AW_CoreDataStore.h */,
+				E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		E7EEF1CD1925B6F80075D69B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E7EEF1CE1925B73B0075D69B /* AW_DatabaseTableViewController.h */,
+				E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7EEF1CC1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
 				E7EEF1931925A8F80075D69B /* InfoPlist.strings in Resources */,
 				E7EEF19B1925A8F80075D69B /* Images.xcassets in Resources */,
 			);
@@ -240,8 +301,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7EEF1C21925AA5D0075D69B /* AW_Database.m in Sources */,
+				E7EEF1C31925AA5D0075D69B /* AW_Property.m in Sources */,
+				E7EEF1C51925AA5D0075D69B /* AW_ShapeFamily.m in Sources */,
 				E7EEF1991925A8F80075D69B /* AW_AppDelegate.m in Sources */,
+				E7EEF1CA1925AB430075D69B /* AW_CoreDataStore.m in Sources */,
+				E7EEF1B91925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld in Sources */,
 				E7EEF1951925A8F80075D69B /* main.m in Sources */,
+				E7EEF1D01925B73B0075D69B /* AW_DatabaseTableViewController.m in Sources */,
+				E7EEF1C41925AA5D0075D69B /* AW_Shape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +516,20 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E7EEF1B71925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E7EEF1B81925A98A0075D69B /* SteelShapesDatabase.xcdatamodel */,
+			);
+			currentVersion = E7EEF1B81925A98A0075D69B /* SteelShapesDatabase.xcdatamodel */;
+			name = SteelShapesDatabase.xcdatamodeld;
+			path = ../SteelShapesDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E7EEF17D1925A8F70075D69B /* Project object */;
 }
