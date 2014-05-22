@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_NavigationController.h"
 #import "AW_DatabaseTableViewController.h"
+#import "AW_ShapeFamilyTableViewController.h"
 #import "AW_CoreDataStore.h"
 #import "AW_Database.h"
 
@@ -37,6 +39,17 @@
     
     self.clearsSelectionOnViewWillAppear = NO;
     
+    // Configure nav bar buttons
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+#warning Temporary bar button item for test purposes
+    if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
+        AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navController.unitSystem];
+    }
+    
+    
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
 }
@@ -64,6 +77,19 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@th Edition", database.organization, database.edition];
     
     return cell;
+}
+
+#pragma mark - Table view delegate methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AW_Database *database = self.databaseList[indexPath.row];
+    
+    NSLog(@"Did select %@",database.key);
+    
+    AW_ShapeFamilyTableViewController *shapeFamilyVC = [[AW_ShapeFamilyTableViewController alloc]init];
+    shapeFamilyVC.database = database;
+    
+    [self.navigationController pushViewController:shapeFamilyVC animated:YES];
 }
 
 

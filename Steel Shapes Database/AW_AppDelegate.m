@@ -8,6 +8,7 @@
 
 #import "AW_AppDelegate.h"
 #import "AW_CoreDataStore.h"
+#import "AW_NavigationController.h"
 #import "AW_DatabaseTableViewController.h"
 #import "AW_Database.h"
 
@@ -18,7 +19,14 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
-    self.window.rootViewController = [[AW_DatabaseTableViewController alloc] init];
+    AW_DatabaseTableViewController *databaseVC = [[AW_DatabaseTableViewController alloc] init];
+    AW_NavigationController *navController = [[AW_NavigationController alloc] initWithRootViewController:databaseVC];
+
+#warning Temporary manually set nav bar color for testing purposes
+    navController.navigationBar.barTintColor = [UIColor colorWithRed:0.5 green:0 blue:0 alpha:1.0];
+    navController.navigationBar.tintColor = [UIColor colorWithRed:1 green:.9 blue:0 alpha:1.0];
+    
+    self.window.rootViewController = navController;
     
     
     self.window.backgroundColor = [UIColor whiteColor];
