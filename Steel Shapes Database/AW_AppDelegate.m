@@ -22,9 +22,9 @@
     AW_DatabaseTableViewController *databaseVC = [[AW_DatabaseTableViewController alloc] init];
     AW_NavigationController *navController = [[AW_NavigationController alloc] initWithRootViewController:databaseVC];
 
-#warning Temporary manually set nav bar color for testing purposes
-    navController.navigationBar.barTintColor = [UIColor colorWithRed:0.5 green:0 blue:0 alpha:1.0];
-    navController.navigationBar.tintColor = [UIColor colorWithRed:1 green:.9 blue:0 alpha:1.0];
+//#warning Temporary manually set nav bar color for testing purposes
+//    navController.navigationBar.barTintColor = [UIColor colorWithRed:0.5 green:0 blue:0 alpha:1.0];
+//    navController.navigationBar.tintColor = [UIColor colorWithRed:1 green:.9 blue:0 alpha:1.0];
     
     self.window.rootViewController = navController;
     

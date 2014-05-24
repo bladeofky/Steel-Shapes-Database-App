@@ -5,7 +5,9 @@
         <attribute name="designMethodology" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="edition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="organization" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textColor" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="shapeFamilies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AW_ShapeFamily" inverseName="database" inverseEntity="AW_ShapeFamily" syncable="YES"/>
     </entity>
@@ -41,9 +43,9 @@
         <relationship name="shapes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AW_Shape" inverseName="shapeFamily" inverseEntity="AW_Shape" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AW_ShapeFamily" positionX="-54" positionY="-9" width="128" height="148"/>
+        <element name="AW_Database" positionX="-288" positionY="-9" width="128" height="180"/>
         <element name="AW_Property" positionX="288" positionY="27" width="128" height="193"/>
         <element name="AW_Shape" positionX="106" positionY="-0" width="128" height="163"/>
-        <element name="AW_Database" positionX="-288" positionY="-9" width="128" height="148"/>
+        <element name="AW_ShapeFamily" positionX="-54" positionY="-9" width="128" height="148"/>
     </elements>
 </model>

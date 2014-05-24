@@ -18,6 +18,8 @@
 @dynamic key;
 @dynamic organization;
 @dynamic textColor;
+@dynamic shortName;
+@dynamic longName;
 @dynamic shapeFamilies;
 
 

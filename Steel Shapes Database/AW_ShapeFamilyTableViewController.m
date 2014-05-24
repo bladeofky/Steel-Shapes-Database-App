@@ -42,16 +42,21 @@
     self.clearsSelectionOnViewWillAppear = NO;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
+    // Set colors for navigation bar
+    self.navigationController.navigationBar.barTintColor = self.database.backgroundColor;
+    self.navigationController.navigationBar.tintColor = self.database.textColor;
     
     // Set database title for navigation bar
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:20.0];
+    titleLabel.font = [UIFont boldSystemFontOfSize:17.0];   //Matches Apple's default nav bar title font
     titleLabel.textColor = self.database.textColor;
-    titleLabel.text = [NSString stringWithFormat:@"%@ %@ Ed.", self.database.organization, self.database.edition];
+    titleLabel.text = self.database.shortName;
+    NSLog(@"%@",self.database.shortName);
     [titleLabel sizeToFit];
     
     self.navigationItem.titleView = titleLabel;
+
 
 }
 

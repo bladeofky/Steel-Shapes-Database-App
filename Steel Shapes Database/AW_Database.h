@@ -19,5 +19,7 @@
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *organization;
 @property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) NSString *shortName;
+@property (nonatomic, strong) NSString *longName;
 @property (nonatomic, strong) NSSet *shapeFamilies;
 @end

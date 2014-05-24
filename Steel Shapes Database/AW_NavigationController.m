@@ -23,6 +23,9 @@
 {
     if (!_unitSystem) {
         _unitSystem = [[UISegmentedControl alloc]initWithItems:@[@"in.",@"mm"]];
+        
+        // Default to imperial units
+        _unitSystem.selectedSegmentIndex = 0;
     }
     
     return _unitSystem;

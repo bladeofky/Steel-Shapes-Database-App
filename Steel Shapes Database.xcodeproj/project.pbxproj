@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E771CD34192ABD3C00A626B5 /* AW_NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E771CD33192ABD3C00A626B5 /* AW_NavigationController.m */; };
 		E7B1B2DE192D807D00054276 /* AW_ShapeFamilyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */; };
+		E7B1B2E819313A3600054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E7B1B2E719313A3600054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
 		E7EEF1891925A8F80075D69B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF1881925A8F80075D69B /* Foundation.framework */; };
 		E7EEF18B1925A8F80075D69B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF18A1925A8F80075D69B /* CoreGraphics.framework */; };
 		E7EEF18D1925A8F80075D69B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF18C1925A8F80075D69B /* UIKit.framework */; };
@@ -27,7 +28,6 @@
 		E7EEF1C41925AA5D0075D69B /* AW_Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1C01925AA5D0075D69B /* AW_Shape.m */; };
 		E7EEF1C51925AA5D0075D69B /* AW_ShapeFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1C11925AA5D0075D69B /* AW_ShapeFamily.m */; };
 		E7EEF1CA1925AB430075D69B /* AW_CoreDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */; };
-		E7EEF1CC1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E7EEF1CB1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
 		E7EEF1D01925B73B0075D69B /* AW_DatabaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +46,8 @@
 		E771CD33192ABD3C00A626B5 /* AW_NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_NavigationController.m; sourceTree = "<group>"; };
 		E7B1B2DC192D807D00054276 /* AW_ShapeFamilyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_ShapeFamilyTableViewController.h; sourceTree = "<group>"; };
 		E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_ShapeFamilyTableViewController.m; sourceTree = "<group>"; };
+		E7B1B2DF192D92EA00054276 /* Update Log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Update Log"; sourceTree = "<group>"; };
+		E7B1B2E719313A3600054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
 		E7EEF1851925A8F80075D69B /* Steel Shapes Database.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Steel Shapes Database.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF1881925A8F80075D69B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E7EEF18A1925A8F80075D69B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,7 +75,6 @@
 		E7EEF1C11925AA5D0075D69B /* AW_ShapeFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_ShapeFamily.m; sourceTree = "<group>"; };
 		E7EEF1C81925AB430075D69B /* AW_CoreDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_CoreDataStore.h; sourceTree = "<group>"; };
 		E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_CoreDataStore.m; sourceTree = "<group>"; };
-		E7EEF1CB1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
 		E7EEF1CE1925B73B0075D69B /* AW_DatabaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_DatabaseTableViewController.h; sourceTree = "<group>"; };
 		E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_DatabaseTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +136,7 @@
 		E7EEF18E1925A8F80075D69B /* Steel Shapes Database */ = {
 			isa = PBXGroup;
 			children = (
+				E7B1B2DF192D92EA00054276 /* Update Log */,
 				E7EEF1C71925AAA60075D69B /* Core Data */,
 				E7EEF1CD1925B6F80075D69B /* View Controllers */,
 				E7EEF1971925A8F80075D69B /* AW_AppDelegate.h */,
@@ -194,7 +196,7 @@
 			children = (
 				E7EEF1C61925AA640075D69B /* Core Data Managed Objects */,
 				E7EEF1B71925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld */,
-				E7EEF1CB1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
+				E7B1B2E719313A3600054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
 				E7EEF1C81925AB430075D69B /* AW_CoreDataStore.h */,
 				E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */,
 			);
@@ -290,7 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7EEF1CC1925AE7B0075D69B /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
+				E7B1B2E819313A3600054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
 				E7EEF1931925A8F80075D69B /* InfoPlist.strings in Resources */,
 				E7EEF19B1925A8F80075D69B /* Images.xcassets in Resources */,
 			);

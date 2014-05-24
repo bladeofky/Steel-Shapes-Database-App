@@ -22,6 +22,7 @@
 
 @synthesize databaseList = _databaseList;
 
+#pragma mark - Custom Accessors
 - (NSArray *)databaseList
 {
     if (!_databaseList) {
@@ -31,13 +32,16 @@
     return _databaseList;
 }
 
-#pragma mark - Custom Accessors
+#pragma mark -
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Configure nav bar title
+    self.navigationItem.title = @"Select Database";
     
     // Configure nav bar buttons
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -47,11 +51,15 @@
         AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navController.unitSystem];
     }
-    
-    
-    
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    // Reset navigation bar colors to default
+    self.navigationController.navigationBar.barTintColor = nil;
+    self.navigationController.navigationBar.tintColor = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +82,11 @@
     
     // Configure the cell...
     AW_Database *database = self.databaseList[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@th Edition", database.organization, database.edition];
+    cell.textLabel.text = database.longName;
+    
+    // Not sure whether to make cells match colors of the source books
+    //cell.backgroundColor = database.backgroundColor;
+    //cell.textLabel.textColor = database.textColor;
     
     return cell;
 }
