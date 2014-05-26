@@ -18,6 +18,8 @@
 @dynamic imp_key;
 @dynamic met_displayName;
 @dynamic met_key;
+@dynamic imp_group;
+@dynamic met_group;
 @dynamic note;
 @dynamic properties;
 @dynamic shapeFamily;

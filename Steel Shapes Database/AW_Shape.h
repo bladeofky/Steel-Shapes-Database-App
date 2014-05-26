@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString *imp_key;
 @property (nonatomic, strong) NSString *met_displayName;
 @property (nonatomic, strong) NSString *met_key;
+@property (nonatomic, strong) NSString *imp_group;
+@property (nonatomic, strong) NSString *met_group;
 @property (nonatomic, strong) NSString *note;
 @property (nonatomic, strong) NSSet *properties;
 @property (nonatomic, strong) AW_ShapeFamily *shapeFamily;

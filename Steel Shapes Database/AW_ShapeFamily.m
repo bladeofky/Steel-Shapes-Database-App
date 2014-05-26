@@ -17,6 +17,7 @@
 @dynamic displayName;
 @dynamic image;
 @dynamic key;
+@dynamic group;
 @dynamic symbol;
 @dynamic database;
 @dynamic shapes;

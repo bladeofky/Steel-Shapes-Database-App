@@ -26,6 +26,7 @@
         
         // Default to imperial units
         _unitSystem.selectedSegmentIndex = 0;
+
     }
     
     return _unitSystem;
@@ -36,7 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,5 +67,7 @@
     
     return isMetric;
 }
+
+
 
 @end

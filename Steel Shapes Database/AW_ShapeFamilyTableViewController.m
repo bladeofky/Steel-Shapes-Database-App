@@ -9,6 +9,7 @@
 #import "AW_Database.h"
 #import "AW_ShapeFamily.h"
 #import "AW_ShapeFamilyTableViewController.h"
+#import "AW_ShapeViewController.h"
 
 @interface AW_ShapeFamilyTableViewController ()
 
@@ -27,7 +28,30 @@
         NSSortDescriptor *sortByOrder = [NSSortDescriptor sortDescriptorWithKey:@"defaultOrder" ascending:YES];
         shapeFamilyList = [shapeFamilyList sortedArrayUsingDescriptors:@[sortByOrder]];
         
-        _tableData = @[shapeFamilyList];
+        // Organize shape families into groups
+        NSMutableArray *tableDataTemp = [[NSMutableArray alloc]init];
+        
+        NSMutableDictionary *groupIndex = [[NSMutableDictionary alloc]init];
+        
+        for (AW_ShapeFamily *family in shapeFamilyList) {
+            NSString *groupName = family.group;
+            NSMutableArray *groupStore;
+            
+            if (!groupIndex[groupName]) {
+                // This is a new group. Create an NSMutableArray for it and add it to the dictionary and tableData array
+                groupStore = [[NSMutableArray alloc]init];
+                [groupIndex setObject:groupStore forKey:groupName];
+                [tableDataTemp addObject:groupStore];
+            }
+            else {
+                groupStore = groupIndex[groupName];
+            }
+            
+            [groupStore addObject:family];
+        }
+        
+        
+        _tableData = [tableDataTemp copy];
     }
     
     return _tableData;
@@ -40,6 +64,8 @@
     [super viewDidLoad];
     
     self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Set table view stuff
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
     // Set colors for navigation bar
@@ -89,6 +115,19 @@
     cell.textLabel.text = family.displayName;
     
     return cell;
+}
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AW_ShapeFamily *family = self.tableData[indexPath.section][indexPath.row];
+    
+    // Create next view controller
+    AW_ShapeViewController *shapeVC = [[AW_ShapeViewController alloc]initWithNibName:@"AW_ShapeViewController" bundle:[NSBundle mainBundle]];
+    shapeVC.shapeFamily = family;
+    
+    // Display next view controller
+    [self.navigationController pushViewController:shapeVC animated:YES];
 }
 
 

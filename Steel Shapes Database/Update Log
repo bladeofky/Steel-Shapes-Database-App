@@ -19,3 +19,13 @@ ShapeFamily VC uses colors and shortName from AW_Database for nav bar
 Next steps:
 - Implement the next table view controller for AW_Shapes
 
+======= 2014-05-26 =======
+
+Implemented view controller for AW_Shapes
+Added target-action to nav bar's unitSystem segmented control to show flip animation
+Created AW_InfoBar view
+Added group fields to AW_ShapeFamily and AW_Shape (updated import utility)
+
+Next steps:
+- Format display name for shapes to look nice (replace X with unicode x and spaces)
+- Implement next view controller to show properties for selected shape

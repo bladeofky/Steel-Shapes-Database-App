@@ -46,11 +46,6 @@
     // Configure nav bar buttons
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-#warning Temporary bar button item for test purposes
-    if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
-        AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navController.unitSystem];
-    }
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
@@ -98,7 +93,7 @@
     
     NSLog(@"Did select %@",database.key);
     
-    AW_ShapeFamilyTableViewController *shapeFamilyVC = [[AW_ShapeFamilyTableViewController alloc]init];
+    AW_ShapeFamilyTableViewController *shapeFamilyVC = [[AW_ShapeFamilyTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     shapeFamilyVC.database = database;
     
     [self.navigationController pushViewController:shapeFamilyVC animated:YES];
