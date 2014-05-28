@@ -1,23 +1,23 @@
 UPDATE LOG
 
-======= 2014-05-21 =======
 
-Added navigation VC and shape family VC
+======= 2014-05-27 =======
 
-Next steps:
-- Adjust database model to add a "longName" and "shortName" property to the Databse entity
-- Update the import utility to correctly transform a UIColor and store it with AW_Database
-- Update this app to unpack the UIColor and use it in the correct locations
-- Update the import utility such that the raw shape family import TSV has a column for which database that shape family belongs to
-
-======= 2014-05-24 =======
-
-Added shortName and longName fields to database entity.
-Import Utility now implements transformation of UIColor to store in Core Data.
-ShapeFamily VC uses colors and shortName from AW_Database for nav bar
+Added some formatting for shape displayNames and group names
+Partially implementd Properties VC
 
 Next steps:
-- Implement the next table view controller for AW_Shapes
+- Figure out a way to display each shape's displayNames properly (HSS and PIPE are giving problems, because AISC is stupid with their raw data).
+    - HSS Pipes do not have consistent number of decimal places
+    - Pipes require special formatting
+- Complete implementation of Properties VC
+    - Add groups (sections)
+    - Format symbol
+    - Display value in the correct format
+    - Create custom cell to show long description
+- Return managed objects to faults before dismissing view controllers (to prevent strong retention cycles)
+- Figure out a better way to implement the flip animation and the isMetric stuff
+
 
 ======= 2014-05-26 =======
 
@@ -29,3 +29,24 @@ Added group fields to AW_ShapeFamily and AW_Shape (updated import utility)
 Next steps:
 - Format display name for shapes to look nice (replace X with unicode x and spaces)
 - Implement next view controller to show properties for selected shape
+
+
+======= 2014-05-24 =======
+
+Added shortName and longName fields to database entity.
+Import Utility now implements transformation of UIColor to store in Core Data.
+ShapeFamily VC uses colors and shortName from AW_Database for nav bar
+
+Next steps:
+- Implement the next table view controller for AW_Shapes
+
+
+======= 2014-05-21 =======
+
+Added navigation VC and shape family VC
+
+Next steps:
+- Adjust database model to add a "longName" and "shortName" property to the Databse entity
+- Update the import utility to correctly transform a UIColor and store it with AW_Database
+- Update this app to unpack the UIColor and use it in the correct locations
+- Update the import utility such that the raw shape family import TSV has a column for which database that shape family belongs to

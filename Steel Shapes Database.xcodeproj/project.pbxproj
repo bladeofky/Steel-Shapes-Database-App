@@ -14,6 +14,8 @@
 		E7B1B2F719326E9300054276 /* AW_InfoBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B1B2F619326E9300054276 /* AW_InfoBar.m */; };
 		E7B1B2F9193388B000054276 /* AW_ShapeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B1B2F8193388B000054276 /* AW_ShapeViewController.xib */; };
 		E7B1B3011933DF3000054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E7B1B3001933DF3000054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
+		E7B1B30519356F7700054276 /* AW_PropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B1B30319356F7700054276 /* AW_PropertyViewController.m */; };
+		E7B1B30619356F7700054276 /* AW_PropertyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B1B30419356F7700054276 /* AW_PropertyViewController.xib */; };
 		E7EEF1891925A8F80075D69B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF1881925A8F80075D69B /* Foundation.framework */; };
 		E7EEF18B1925A8F80075D69B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF18A1925A8F80075D69B /* CoreGraphics.framework */; };
 		E7EEF18D1925A8F80075D69B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEF18C1925A8F80075D69B /* UIKit.framework */; };
@@ -58,6 +60,9 @@
 		E7B1B2F619326E9300054276 /* AW_InfoBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_InfoBar.m; sourceTree = "<group>"; };
 		E7B1B2F8193388B000054276 /* AW_ShapeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_ShapeViewController.xib; sourceTree = "<group>"; };
 		E7B1B3001933DF3000054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
+		E7B1B30219356F7700054276 /* AW_PropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_PropertyViewController.h; sourceTree = "<group>"; };
+		E7B1B30319356F7700054276 /* AW_PropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_PropertyViewController.m; sourceTree = "<group>"; };
+		E7B1B30419356F7700054276 /* AW_PropertyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_PropertyViewController.xib; sourceTree = "<group>"; };
 		E7EEF1851925A8F80075D69B /* Steel Shapes Database.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Steel Shapes Database.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF1881925A8F80075D69B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E7EEF18A1925A8F80075D69B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -236,6 +241,9 @@
 				E7B1B2EF1931541E00054276 /* AW_ShapeViewController.h */,
 				E7B1B2F01931541E00054276 /* AW_ShapeViewController.m */,
 				E7B1B2F8193388B000054276 /* AW_ShapeViewController.xib */,
+				E7B1B30219356F7700054276 /* AW_PropertyViewController.h */,
+				E7B1B30319356F7700054276 /* AW_PropertyViewController.m */,
+				E7B1B30419356F7700054276 /* AW_PropertyViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7EEF1931925A8F80075D69B /* InfoPlist.strings in Resources */,
+				E7B1B30619356F7700054276 /* AW_PropertyViewController.xib in Resources */,
 				E7EEF19B1925A8F80075D69B /* Images.xcassets in Resources */,
 				E7B1B3011933DF3000054276 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
 				E7B1B2F9193388B000054276 /* AW_ShapeViewController.xib in Resources */,
@@ -352,6 +361,7 @@
 				E7EEF1D01925B73B0075D69B /* AW_DatabaseTableViewController.m in Sources */,
 				E7EEF1C41925AA5D0075D69B /* AW_Shape.m in Sources */,
 				E7B1B2F11931541E00054276 /* AW_ShapeViewController.m in Sources */,
+				E7B1B30519356F7700054276 /* AW_PropertyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

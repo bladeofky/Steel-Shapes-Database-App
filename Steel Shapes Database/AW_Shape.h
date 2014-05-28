@@ -23,5 +23,9 @@
 @property (nonatomic, strong) NSString *note;
 @property (nonatomic, strong) NSSet *properties;
 @property (nonatomic, strong) AW_ShapeFamily *shapeFamily;
+
+- (NSString *)formattedDisplayNameForUnitSystem: (BOOL)isMetric;
+- (NSString *)formattedGroupNameForUnitSystem: (BOOL)isMetric;
+
 @end
 

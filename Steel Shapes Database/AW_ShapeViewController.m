@@ -8,6 +8,8 @@
 
 #import "AW_NavigationController.h"
 #import "AW_ShapeViewController.h"
+#import "AW_PropertyViewController.h"
+#import "AW_Database.h"
 #import "AW_ShapeFamily.h"
 #import "AW_Shape.h"
 #import "AW_InfoBar.h"
@@ -79,6 +81,16 @@
         [navController.unitSystem addTarget:self
                                      action:@selector(switchImperialMetric)
                            forControlEvents:UIControlEventValueChanged];
+        
+        // Set database title for navigation bar
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.font = [UIFont boldSystemFontOfSize:17.0];   //Matches Apple's default nav bar title font
+        titleLabel.textColor = self.navigationController.navigationBar.tintColor;
+        titleLabel.text = self.shapeFamily.database.shortName;
+        [titleLabel sizeToFit];
+        
+        self.navigationItem.titleView = titleLabel;
     }
     
     // Setup info bar
@@ -129,12 +141,7 @@
     // Configure the cell...
     AW_Shape *shape = self.tableData[indexPath.section][indexPath.row];
     
-    if ([(AW_NavigationController *)self.navigationController isMetric]) {
-        cell.textLabel.text = shape.met_displayName;
-    }
-    else {
-        cell.textLabel.text = shape.imp_displayName;
-    }
+    cell.textLabel.text = [shape formattedDisplayNameForUnitSystem:[(AW_NavigationController *)self.navigationController isMetric]];
     
     return cell;
 }
@@ -144,14 +151,19 @@
     NSString *sectionName;
     AW_Shape *temp = self.tableData[section][0]; // Used to access the group name for this group
     
-    if ([(AW_NavigationController *)self.navigationController isMetric]) {
-        sectionName = temp.met_group;
-    }
-    else {
-        sectionName = temp.imp_group;
-    }
+    sectionName = [temp formattedGroupNameForUnitSystem:[(AW_NavigationController *)self.navigationController isMetric]];
     
     return sectionName;
+}
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AW_PropertyViewController *nextVC = [[AW_PropertyViewController alloc]initWithNibName:@"AW_PropertyViewController" bundle:[NSBundle mainBundle]];
+    
+    nextVC.shape = self.tableData[indexPath.section][indexPath.row];
+    
+    [self.navigationController pushViewController:nextVC animated:YES];
 }
 
 #pragma mark - Custom methods

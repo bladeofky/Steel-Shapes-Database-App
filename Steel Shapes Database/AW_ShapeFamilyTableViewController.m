@@ -76,9 +76,8 @@
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:17.0];   //Matches Apple's default nav bar title font
-    titleLabel.textColor = self.database.textColor;
+    titleLabel.textColor = self.navigationController.navigationBar.tintColor;
     titleLabel.text = self.database.shortName;
-    NSLog(@"%@",self.database.shortName);
     [titleLabel sizeToFit];
     
     self.navigationItem.titleView = titleLabel;
