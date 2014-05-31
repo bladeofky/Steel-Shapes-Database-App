@@ -78,9 +78,7 @@
     if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
         AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navController.unitSystem];
-        [navController.unitSystem addTarget:self
-                                     action:@selector(switchImperialMetric)
-                           forControlEvents:UIControlEventValueChanged];
+
         
         // Set database title for navigation bar
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -99,6 +97,18 @@
     // Setup table view
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Set target-action for unitSystem segmented control
+    AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
+    [navController.unitSystem addTarget:self
+                                 action:@selector(switchImperialMetric)
+                       forControlEvents:UIControlEventValueChanged];
+    
+    // Reload tableView
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

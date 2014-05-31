@@ -14,7 +14,8 @@
 @interface AW_Property : NSManagedObject
 
 @property (nonatomic, strong) NSNumber *defaultOrder;
-@property (nonatomic, strong) NSNumber *displayType;
+@property (nonatomic, strong) NSNumber *imp_displayType;
+@property (nonatomic, strong) NSNumber *met_displayType;
 @property (nonatomic, strong) NSString *imp_units;
 @property (nonatomic, strong) NSDecimalNumber *imp_value;
 @property (nonatomic, strong) NSString *key;
@@ -22,6 +23,11 @@
 @property (nonatomic, strong) NSDecimalNumber *met_value;
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) NSString *longDescription;
+@property (nonatomic, strong) NSString *group;
 @property (nonatomic, strong) AW_Shape *shape;
+
+- (NSAttributedString *)formattedSymbol;
+- (NSString *)formattedValueForUnitSystem: (BOOL)isMetric;
+-(NSString *) formattedUnitsForUnitSystem:(BOOL)isMetric;
 
 @end

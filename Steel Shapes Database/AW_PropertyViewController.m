@@ -9,6 +9,7 @@
 #import "AW_InfoBar.h"
 #import "AW_NavigationController.h"
 #import "AW_PropertyViewController.h"
+#import "AW_PropertyTableViewCell.h"
 #import "AW_Database.h"
 #import "AW_ShapeFamily.h"
 #import "AW_Shape.h"
@@ -36,29 +37,27 @@
         
         NSMutableDictionary *groupIndex = [[NSMutableDictionary alloc]init];
         
-        // Uncomment this part once a "group" attribute has been added to Property:
-//        for (AW_Property *property in propertyList) {
-//            
-//            NSString *groupName = property.group;
-//            
-//            NSMutableArray *groupStore;
-//            
-//            if (!groupIndex[groupName]) {
-//                // This is a new group. Create an NSMutableArray for it and add it to the dictionary and tableData array
-//                groupStore = [[NSMutableArray alloc]init];
-//                [groupIndex setObject:groupStore forKey:groupName];
-//                [tableDataTemp addObject:groupStore];
-//            }
-//            else {
-//                groupStore = groupIndex[groupName];
-//            }
-//            
-//            [groupStore addObject:property];
-//        }
-//        
-//        _tableData = [tableDataTemp copy];
+        for (AW_Property *property in propertyList) {
+            
+            NSString *groupName = property.group;
+            
+            NSMutableArray *groupStore;
+            
+            if (!groupIndex[groupName]) {
+                // This is a new group. Create an NSMutableArray for it and add it to the dictionary and tableData array
+                groupStore = [[NSMutableArray alloc]init];
+                [groupIndex setObject:groupStore forKey:groupName];
+                [tableDataTemp addObject:groupStore];
+            }
+            else {
+                groupStore = groupIndex[groupName];
+            }
+            
+            [groupStore addObject:property];
+        }
         
-        _tableData = propertyList;
+        _tableData = [tableDataTemp copy];
+
     }
     
     return _tableData;
@@ -75,9 +74,6 @@
     if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
         AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:navController.unitSystem];
-        [navController.unitSystem addTarget:self
-                                     action:@selector(switchImperialMetric)
-                           forControlEvents:UIControlEventValueChanged];
         
         // Set database title for navigation bar
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -94,7 +90,32 @@
     self.infoBar.textLabel.text = [self.shape formattedDisplayNameForUnitSystem:[(AW_NavigationController *)self.navigationController isMetric]];
     
     // Set up tableView
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    UINib *nib = [UINib nibWithNibName:@"AW_PropertyTableViewCell" bundle:[NSBundle mainBundle]];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"AW_PropertyTableViewCell"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Set target-action for unitSystem segmented control
+    AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
+    [navController.unitSystem addTarget:self
+                                 action:@selector(switchImperialMetric)
+                       forControlEvents:UIControlEventValueChanged];
+    
+    // Reload tableView
+    [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // Remove target-actions from the nav bar's unitSystem segmented control
+    if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
+        AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
+        
+        [navController.unitSystem removeTarget:self
+                                        action:@selector(switchImperialMetric)
+                              forControlEvents:UIControlEventValueChanged];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,22 +128,33 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.tableData count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tableData count];
+    return [self.tableData[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AW_Property *property = self.tableData[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    BOOL isMetric = [(AW_NavigationController *)self.navigationController isMetric];
     
-    cell.textLabel.text = property.symbol;
+    AW_Property *property = self.tableData[indexPath.section][indexPath.row];
+    AW_PropertyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AW_PropertyTableViewCell" forIndexPath:indexPath];
+    
+    cell.symbolLabel.attributedText = [property formattedSymbol];
+    cell.valueLabel.text = [property formattedValueForUnitSystem:isMetric];
+    cell.unitLabel.text = [property formattedUnitsForUnitSystem:isMetric];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    AW_Property *property = self.tableData[section][0];
+    
+    return property.group;
 }
 
 #pragma mark - Custom methods
