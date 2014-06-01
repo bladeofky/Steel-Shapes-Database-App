@@ -106,8 +106,7 @@
         //This is a fraction of some kind
         wholeNumber = @"";
         
-        if ( ([originalText rangeOfString:@"-"].location != NSNotFound) ||
-            ([originalText rangeOfString:@" "].location != NSNotFound)) {
+        if ([originalText rangeOfString:@"-"].location != NSNotFound) {
             //This is a mixed fraction
             NSArray *temp = [originalText componentsSeparatedByString:@"-"];
             

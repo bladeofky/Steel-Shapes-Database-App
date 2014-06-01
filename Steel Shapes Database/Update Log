@@ -2,15 +2,16 @@ UPDATE LOG
 
 ======= 2014-06-01 =======
 Added textField to display property's longDescription
+Edited shape's raw data so that display names and sections are more usable for the end user
+Added code to display index bar for shape table view, but did not implement index bar because of display/usability issues
 
 Future feature updates:
 - Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view.
 - Add images to property descriptions
+- Think of a solution for quick navigation in AW_ShapeViewController's tableView
 
 Next steps:
-- Figure out a way to display each shape's displayNames properly (HSS and PIPE are giving problems, because AISC is stupid with their raw data).
-    - HSS Pipes do not have consistent number of decimal places
-    - Pipes require special formatting
+- Figure out autolayout in property cell (currently it is underconstrained, but when a vertical constraint is added to the textField, it complains about being overconstrained).
 - Return managed objects to faults before dismissing view controllers (to prevent strong retention cycles)
 
 ======= 2014-05-31 =======

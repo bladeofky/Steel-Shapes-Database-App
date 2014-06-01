@@ -17,12 +17,16 @@
 @interface AW_ShapeViewController ()
 
 @property (nonatomic, strong) NSArray *tableData;
+@property (nonatomic, strong) NSArray *imp_sectionIndex; // Stores section titles for use in index bar
+@property (nonatomic, strong) NSArray *met_sectionIndex; // Stores ection titles for use in index bar
 
 @end
 
 @implementation AW_ShapeViewController
 
 #pragma mark - Custom Accessors
+
+// This also initializes and populates sectionIndex
 -(NSArray *)tableData
 {
     if (!_tableData) {
@@ -35,7 +39,6 @@
         NSMutableArray *tableDataTemp = [[NSMutableArray alloc]init];
         
         NSMutableDictionary *groupIndex = [[NSMutableDictionary alloc]init];
-        
         
         for (AW_Shape *shape in shapeList) {
             
@@ -66,6 +69,46 @@
     }
     
     return _tableData;
+}
+
+// Use lazy instantiation: imp_sectionIndex only needs to be built once, because the tableData will never change
+- (NSArray *)imp_sectionIndex
+{
+    if (!_imp_sectionIndex) {
+        NSMutableArray *output = [[NSMutableArray alloc]init];
+        
+        for (NSArray *section in self.tableData) {
+            NSString *sectionName;
+            AW_Shape *temp = section[0]; // Used to access the group name for this group
+            
+            sectionName = [temp formattedGroupNameForUnitSystem:0]; // 0 = Imperial
+            [output addObject:sectionName];
+        }
+        
+        _imp_sectionIndex = [output copy];
+    }
+    
+    return _imp_sectionIndex;
+}
+
+// Use lazy instantiation: met_sectionIndex only needs to be built once, because the tableData will never change
+- (NSArray *)met_sectionIndex
+{
+    if (!_met_sectionIndex) {
+        NSMutableArray *output = [[NSMutableArray alloc]init];
+        
+        for (NSArray *section in self.tableData) {
+            NSString *sectionName;
+            AW_Shape *temp = section[0]; // Used to access the group name for this group
+            
+            sectionName = [temp formattedGroupNameForUnitSystem:1]; // 1 = Metric
+            [output addObject:sectionName];
+        }
+        
+        _met_sectionIndex = [output copy];
+    }
+    
+    return _met_sectionIndex;
 }
 
 #pragma mark -
@@ -159,12 +202,37 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
-    AW_Shape *temp = self.tableData[section][0]; // Used to access the group name for this group
+    BOOL isMetric = [(AW_NavigationController *)self.navigationController isMetric];
     
-    sectionName = [temp formattedGroupNameForUnitSystem:[(AW_NavigationController *)self.navigationController isMetric]];
+    if (isMetric) {
+        sectionName = self.met_sectionIndex[section];
+    }
+    else {
+        sectionName = self.imp_sectionIndex[section];
+    }
     
     return sectionName;
 }
+
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+//{
+//    NSArray *output;
+//    BOOL isMetric = [(AW_NavigationController *)self.navigationController isMetric];
+//    
+//    if (isMetric) {
+//        output = self.met_sectionIndex;
+//    }
+//    else {
+//        output = self.imp_sectionIndex;
+//    }
+//    
+//    return output;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+//{
+//    return [[self sectionIndexTitlesForTableView:tableView] indexOfObject:title];
+//}
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
