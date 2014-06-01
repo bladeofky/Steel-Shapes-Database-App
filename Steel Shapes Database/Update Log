@@ -1,5 +1,18 @@
 UPDATE LOG
 
+======= 2014-06-01 =======
+Added textField to display property's longDescription
+
+Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view.
+- Add images to property descriptions
+
+Next steps:
+- Figure out a way to display each shape's displayNames properly (HSS and PIPE are giving problems, because AISC is stupid with their raw data).
+    - HSS Pipes do not have consistent number of decimal places
+    - Pipes require special formatting
+- Return managed objects to faults before dismissing view controllers (to prevent strong retention cycles)
+
 ======= 2014-05-31 =======
 Finished implementing Properties VC
 Created a subclass of TableViewCell for properties (AW_PropertyTableViewCell) with xib

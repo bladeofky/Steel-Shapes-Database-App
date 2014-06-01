@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E76C403D193A55F900800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E76C403C193A55F900800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
 		E76C4041193A7D2A00800FAA /* AW_PropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C403F193A7D2A00800FAA /* AW_PropertyTableViewCell.m */; };
 		E76C4042193A7D2A00800FAA /* AW_PropertyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E76C4040193A7D2A00800FAA /* AW_PropertyTableViewCell.xib */; };
+		E76C404C193B829C00800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E76C404B193B829C00800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
 		E771CD34192ABD3C00A626B5 /* AW_NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E771CD33192ABD3C00A626B5 /* AW_NavigationController.m */; };
 		E7B1B2DE192D807D00054276 /* AW_ShapeFamilyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */; };
 		E7B1B2EE1931516800054276 /* AW_InfoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B1B2ED1931516800054276 /* AW_InfoBar.xib */; };
@@ -50,10 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E76C403C193A55F900800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
 		E76C403E193A7D2A00800FAA /* AW_PropertyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_PropertyTableViewCell.h; sourceTree = "<group>"; };
 		E76C403F193A7D2A00800FAA /* AW_PropertyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_PropertyTableViewCell.m; sourceTree = "<group>"; };
 		E76C4040193A7D2A00800FAA /* AW_PropertyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_PropertyTableViewCell.xib; sourceTree = "<group>"; };
+		E76C404B193B829C00800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
 		E771CD32192ABD3C00A626B5 /* AW_NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_NavigationController.h; sourceTree = "<group>"; };
 		E771CD33192ABD3C00A626B5 /* AW_NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_NavigationController.m; sourceTree = "<group>"; };
 		E7B1B2DC192D807D00054276 /* AW_ShapeFamilyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_ShapeFamilyTableViewController.h; sourceTree = "<group>"; };
@@ -230,7 +230,7 @@
 			children = (
 				E7EEF1C61925AA640075D69B /* Core Data Managed Objects */,
 				E7EEF1B71925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld */,
-				E76C403C193A55F900800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
+				E76C404B193B829C00800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
 				E7EEF1C81925AB430075D69B /* AW_CoreDataStore.h */,
 				E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */,
 			);
@@ -332,7 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E76C403D193A55F900800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
+				E76C404C193B829C00800FAA /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
 				E7EEF1931925A8F80075D69B /* InfoPlist.strings in Resources */,
 				E7B1B30619356F7700054276 /* AW_PropertyViewController.xib in Resources */,
 				E7EEF19B1925A8F80075D69B /* Images.xcassets in Resources */,

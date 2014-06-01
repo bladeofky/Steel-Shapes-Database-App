@@ -18,6 +18,7 @@
 @interface AW_PropertyViewController ()
 
 @property (nonatomic, strong) NSArray *tableData;
+@property (nonatomic, strong) NSIndexPath *selectedRow;
 
 @end
 
@@ -146,6 +147,10 @@
     cell.symbolLabel.attributedText = [property formattedSymbol];
     cell.valueLabel.text = [property formattedValueForUnitSystem:isMetric];
     cell.unitLabel.text = [property formattedUnitsForUnitSystem:isMetric];
+    cell.descriptionTextView.text = [property longDescription];
+    cell.descriptionTextView.font = [UIFont systemFontOfSize:15.0];
+    //NSLog(@"%@", [property longDescription]);
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     
     return cell;
 }
@@ -155,6 +160,65 @@
     AW_Property *property = self.tableData[section][0];
     
     return property.group;
+}
+
+#pragma mark - Table View delegate methods
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedRow = indexPath;
+    
+    // Animated the change in row height (see code in tableView: heightForRowAtIndexPath
+    [tableView beginUpdates];
+    [tableView endUpdates];
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath isEqual:self.selectedRow]) {
+        // Manually deselect row
+        [tableView.delegate tableView:tableView willDeselectRowAtIndexPath:indexPath];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView.delegate tableView:tableView didDeselectRowAtIndexPath:indexPath];
+        
+        return nil;
+    }
+    
+    return indexPath;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath;
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedRow = nil;
+    
+    // Animated the change in row height (see code in tableView: heightForRowAtIndexPath
+    [tableView beginUpdates];
+    [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TO-DO: Figure out how to make this work by using a property from the cell
+    // Currently, using cellForRowAtIndexPath results in a bad access error
+    // We will need to use a property for the individual cell, since the required height may
+    // change depending on if an image is included.
+    
+    CGFloat rowHeight;
+    
+    if ([indexPath isEqual:self.selectedRow]) {
+        // For the selected row, display the full height of the cell
+        rowHeight = 100;    // This is the bounds height for AW_PropertyTableViewCell
+    }
+    else {
+        // Otherwise, only show the top 44 points (default size for tableView)
+        rowHeight = 44;
+    }
+    
+    return rowHeight;
 }
 
 #pragma mark - Custom methods
