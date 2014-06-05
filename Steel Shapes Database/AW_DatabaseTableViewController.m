@@ -57,6 +57,15 @@
     self.navigationController.navigationBar.tintColor = nil;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Return all managed objects to faults
+    for (AW_Database *database in self.databaseList)
+    {
+        [[AW_CoreDataStore sharedStore]returnObjectToFault:database];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

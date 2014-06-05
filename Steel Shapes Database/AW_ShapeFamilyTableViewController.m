@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_CoreDataStore.h"
 #import "AW_Database.h"
 #import "AW_ShapeFamily.h"
 #import "AW_ShapeFamilyTableViewController.h"
@@ -81,8 +82,15 @@
     [titleLabel sizeToFit];
     
     self.navigationItem.titleView = titleLabel;
+}
 
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Return all managed objects to faults
+    for (AW_ShapeFamily *family in self.database.shapeFamilies)
+    {
+        [[AW_CoreDataStore sharedStore]returnObjectToFault:family];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -112,6 +120,9 @@
     
     AW_ShapeFamily *family = self.tableData[indexPath.section][indexPath.row];
     cell.textLabel.text = family.displayName;
+    
+//    UIImage *image = 
+//    cell.imageView.image = image;
     
     return cell;
 }

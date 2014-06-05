@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
-@import CoreData;
-
 #import "AW_CoreDataStore.h"
 
 @interface AW_CoreDataStore ()
@@ -88,6 +86,12 @@
     }
     
     return fetchedObjects;
+}
+
+#pragma mark - Releasing memory
+- (void)returnObjectToFault:(NSManagedObject *)object
+{
+    [self.context refreshObject:object mergeChanges:NO];
 }
 
 @end

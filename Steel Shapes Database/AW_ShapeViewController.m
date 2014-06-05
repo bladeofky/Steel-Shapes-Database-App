@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_CoreDataStore.h"
 #import "AW_NavigationController.h"
 #import "AW_ShapeViewController.h"
 #import "AW_PropertyViewController.h"
@@ -163,6 +164,15 @@
         [navController.unitSystem removeTarget:self
                                         action:@selector(switchImperialMetric)
                               forControlEvents:UIControlEventValueChanged];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Return all managed objects to faults
+    for (AW_Shape *shape in self.shapeFamily.shapes)
+    {
+        [[AW_CoreDataStore sharedStore]returnObjectToFault:shape];
     }
 }
 

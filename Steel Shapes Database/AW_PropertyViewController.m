@@ -7,6 +7,7 @@
 //
 
 #import "AW_InfoBar.h"
+#import "AW_CoreDataStore.h"
 #import "AW_NavigationController.h"
 #import "AW_PropertyViewController.h"
 #import "AW_PropertyTableViewCell.h"
@@ -116,6 +117,16 @@
         [navController.unitSystem removeTarget:self
                                         action:@selector(switchImperialMetric)
                               forControlEvents:UIControlEventValueChanged];
+    }
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // Return all managed objects to faults
+    for (AW_Property *property in self.shape.properties)
+    {
+        [[AW_CoreDataStore sharedStore]returnObjectToFault:property];
     }
 }
 

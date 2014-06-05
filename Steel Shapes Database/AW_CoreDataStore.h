@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface AW_CoreDataStore : NSObject
 
 + (instancetype)sharedStore;
 - (NSArray *)fetchAW_DatabaseObjects;
+- (void)returnObjectToFault:(NSManagedObject *)object;
 
 @end
