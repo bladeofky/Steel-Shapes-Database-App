@@ -47,8 +47,8 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOo-kk-dDy">
-                        <rect key="frame" x="20" y="44" width="280" height="46"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOo-kk-dDy">
+                        <rect key="frame" x="20" y="44" width="280" height="47"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -62,9 +62,10 @@
                     <constraint firstItem="YOo-kk-dDy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Geu-37-hAN"/>
                     <constraint firstItem="OjN-Wf-ecY" firstAttribute="baseline" secondItem="meK-rf-Q7j" secondAttribute="baseline" id="MxR-Gn-cIp"/>
                     <constraint firstAttribute="trailing" secondItem="YOo-kk-dDy" secondAttribute="trailing" constant="20" id="Yxb-EP-nlh"/>
-                    <constraint firstItem="DVf-5v-gpz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hqC-1W-fi0"/>
+                    <constraint firstAttribute="top" secondItem="DVf-5v-gpz" secondAttribute="top" id="hqC-1W-fi0"/>
                     <constraint firstItem="OjN-Wf-ecY" firstAttribute="leading" secondItem="DVf-5v-gpz" secondAttribute="trailing" constant="8" id="iDc-Cn-uCl"/>
-                    <constraint firstAttribute="bottom" secondItem="YOo-kk-dDy" secondAttribute="bottom" constant="9" id="oWs-Qo-lZT"/>
+                    <constraint firstAttribute="bottom" secondItem="YOo-kk-dDy" secondAttribute="bottom" priority="750" constant="8" id="iul-iC-aa5"/>
+                    <constraint firstItem="YOo-kk-dDy" firstAttribute="top" secondItem="DVf-5v-gpz" secondAttribute="bottom" id="r3p-VN-Lye"/>
                     <constraint firstItem="meK-rf-Q7j" firstAttribute="leading" secondItem="OjN-Wf-ecY" secondAttribute="trailing" constant="8" id="rWg-1s-b6Y"/>
                     <constraint firstAttribute="trailing" secondItem="meK-rf-Q7j" secondAttribute="trailing" constant="20" id="sYu-B4-F1v"/>
                 </constraints>

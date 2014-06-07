@@ -24,7 +24,7 @@
                         <constraint firstAttribute="height" constant="60" id="dvu-k2-CDC"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-Db-YfN">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-Db-YfN">
                     <rect key="frame" x="0.0" y="125" width="320" height="443"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,9 +37,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Scn-tM-sa3" firstAttribute="top" secondItem="fkb-LU-pKQ" secondAttribute="top" constant="65" id="GDJ-cb-WOt"/>
-                <constraint firstAttribute="bottom" secondItem="aBL-Db-YfN" secondAttribute="bottom" id="cbV-uI-WZZ"/>
                 <constraint firstItem="aBL-Db-YfN" firstAttribute="top" secondItem="Scn-tM-sa3" secondAttribute="bottom" id="csU-Ku-dk3"/>
                 <constraint firstItem="aBL-Db-YfN" firstAttribute="leading" secondItem="fkb-LU-pKQ" secondAttribute="leading" id="hUx-wc-kGj"/>
+                <constraint firstAttribute="bottom" secondItem="aBL-Db-YfN" secondAttribute="bottom" priority="750" id="hgT-Kq-XIt"/>
                 <constraint firstItem="Scn-tM-sa3" firstAttribute="leading" secondItem="fkb-LU-pKQ" secondAttribute="leading" id="lET-kn-Kar"/>
                 <constraint firstAttribute="trailing" secondItem="aBL-Db-YfN" secondAttribute="trailing" id="lVV-4s-JdO"/>
                 <constraint firstAttribute="trailing" secondItem="Scn-tM-sa3" secondAttribute="trailing" id="xHO-Zv-HmD"/>

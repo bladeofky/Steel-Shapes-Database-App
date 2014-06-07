@@ -50,7 +50,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     // Reset navigation bar colors to default
     self.navigationController.navigationBar.barTintColor = nil;

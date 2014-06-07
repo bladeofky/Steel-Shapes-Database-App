@@ -13,6 +13,8 @@
 
 + (instancetype)sharedStore;
 - (NSArray *)fetchAW_DatabaseObjects;
+
 - (void)returnObjectToFault:(NSManagedObject *)object;
+- (void)resetContext;
 
 @end

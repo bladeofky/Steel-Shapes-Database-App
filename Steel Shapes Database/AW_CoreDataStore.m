@@ -94,4 +94,9 @@
     [self.context refreshObject:object mergeChanges:NO];
 }
 
+- (void)resetContext
+{
+    [self.context reset];
+}
+
 @end

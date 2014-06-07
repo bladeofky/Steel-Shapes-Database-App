@@ -1,5 +1,19 @@
 UPDATE LOG
 
+======= 2014-06-07 =======
+Implemented iAd banner in AW_PropertyViewController
+Added index bar to AW_ShapeViewController
+
+Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view. (currently there is a way to dynamically size the cell, but it has performs issues for iOS6 and below).
+- Add images to property descriptions
+
+Next Steps:
+- Implement the About screen
+- Add icons
+- Add some more databases
+- Prepare for first release!
+
 ======= 2014-06-04 =======
 Added code to return managed objects to fault in viewDidDisappear, thereby removing memory leak caused by strong reference cycle of managed objects.
 
@@ -12,7 +26,7 @@ Future feature updates:
 - Think of a solution for quick navigation in AW_ShapeViewController's tableView
 
 Next steps:
-- Figure out autolayout in property cell (currently it is underconstrained, but when a vertical constraint is added to the textField, it complains about being overconstrained).
+- Figure out why autolayout is complaining about overconstraints
 
 ======= 2014-06-01 =======
 Added textField to display property's longDescription

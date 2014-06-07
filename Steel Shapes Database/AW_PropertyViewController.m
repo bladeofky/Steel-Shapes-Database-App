@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import <iAd/iAd.h>
 #import "AW_InfoBar.h"
 #import "AW_CoreDataStore.h"
 #import "AW_NavigationController.h"
@@ -16,10 +17,11 @@
 #import "AW_Shape.h"
 #import "AW_Property.h"
 
-@interface AW_PropertyViewController ()
+@interface AW_PropertyViewController () <ADBannerViewDelegate>
 
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSIndexPath *selectedRow;
+@property BOOL bannerViewIsVisible;
 
 @end
 
@@ -94,6 +96,34 @@
     // Set up tableView
     UINib *nib = [UINib nibWithNibName:@"AW_PropertyTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"AW_PropertyTableViewCell"];
+    
+    // Set up iAd banner view
+    ADBannerView *adView = [[ADBannerView alloc]initWithAdType:ADAdTypeBanner];
+    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    adView.frame = CGRectMake(screenBounds.origin.x,
+                              screenBounds.size.height,
+                              screenBounds.size.width,
+                              adView.bounds.size.height);
+    adView.delegate = self;
+    [self.view addSubview:adView];
+    
+    //adView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *constraintWithTableView = [NSLayoutConstraint constraintWithItem:adView
+                                                                               attribute:NSLayoutAttributeTop
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:self.tableView
+                                                                               attribute:NSLayoutAttributeBottom
+                                                                              multiplier:1.0
+                                                                                constant:0.0];
+    NSArray *horizontalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[adView]|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:@{@"adView": adView}];
+    
+    [self.view addConstraints:horizontalConstraint];
+    [self.view addConstraint:constraintWithTableView];
+    
+    self.bannerViewIsVisible = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -134,6 +164,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 #pragma mark - Table View Data Source
@@ -154,7 +185,7 @@
     
     AW_Property *property = self.tableData[indexPath.section][indexPath.row];
     AW_PropertyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AW_PropertyTableViewCell" forIndexPath:indexPath];
-    
+
     cell.symbolLabel.attributedText = [property formattedSymbol];
     cell.valueLabel.text = [property formattedValueForUnitSystem:isMetric];
     cell.unitLabel.text = [property formattedUnitsForUnitSystem:isMetric];
@@ -256,5 +287,31 @@
          [self.tableView reloadData];
      } completion:nil];
 }
+
+#pragma mark - iAd methods
+- (void)bannerViewWillLoadAd:(ADBannerView *)banner
+{
+    if (!self.bannerViewIsVisible) {
+        NSLog(@"Banner view did load ad");
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+        CGFloat bannerHeight = banner.bounds.size.height;
+        banner.frame = CGRectOffset(banner.frame, 0, -bannerHeight);    //tableView will automatically readjust because of the constraint we made in viewDidLoad
+        [UIView commitAnimations];
+        self.bannerViewIsVisible = YES;
+    }
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    if (self.bannerViewIsVisible) {
+        NSLog(@"bannerView:didFailToReceiveAdWithError");
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        CGFloat bannerHeight = banner.bounds.size.height;
+        banner.frame = CGRectOffset(banner.frame, 0, bannerHeight); //tableView will automatically readjust because of the constraint we made in viewDidLoad
+        [UIView commitAnimations];
+        self.bannerViewIsVisible = NO;
+    }
+}
+
 
 @end

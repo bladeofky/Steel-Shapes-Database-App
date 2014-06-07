@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSArray *imp_sectionIndex; // Stores section titles for use in index bar
 @property (nonatomic, strong) NSArray *met_sectionIndex; // Stores ection titles for use in index bar
+@property (nonatomic, strong) NSIndexPath *previousSelectionIndexPath; // Store the last selected shape
 
 @end
 
@@ -140,6 +141,9 @@
     
     // Setup table view
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    self.tableView.sectionIndexColor = self.navigationController.navigationBar.barTintColor;
+    self.tableView.sectionIndexTrackingBackgroundColor = [UIColor colorWithRed:(247/255.0) green:(247/255.0) blue:(247/255.0) alpha:1.0];
+    
 
 }
 
@@ -180,6 +184,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+
 }
 
 #pragma mark - Table view data source
@@ -206,6 +211,11 @@
     
     cell.textLabel.text = [shape formattedDisplayNameForUnitSystem:[(AW_NavigationController *)self.navigationController isMetric]];
     
+    if ([self.previousSelectionIndexPath isEqual:indexPath]) {
+        [self.tableView selectRowAtIndexPath:self.previousSelectionIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
+    
+    
     return cell;
 }
 
@@ -224,8 +234,8 @@
     return sectionName;
 }
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
 //    NSArray *output;
 //    BOOL isMetric = [(AW_NavigationController *)self.navigationController isMetric];
 //    
@@ -237,16 +247,37 @@
 //    }
 //    
 //    return output;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-//{
-//    return [[self sectionIndexTitlesForTableView:tableView] indexOfObject:title];
-//}
+    
+    // Create a "dummy" index with only bullet points. User can use the bar to quickly jump around the table, but the bar does not show section headers
+    NSMutableArray *arrayBuilder = [[NSMutableArray alloc]init];
+    int numberOfDummySections = 100;
+    for (int index = 0; index < numberOfDummySections; index++) {
+        [arrayBuilder addObject:@"\u25C9"];
+    }
+    
+    NSArray *output = [arrayBuilder copy];
+    
+    return output;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    NSUInteger numberOfRealSections = [self.tableData count];
+    NSArray *dummyArray = [self sectionIndexTitlesForTableView:tableView];
+    NSUInteger numberOfDummySections = [dummyArray count];
+    double ratio = (double)numberOfRealSections / numberOfDummySections;
+    
+    NSUInteger realIndexToReturn = (int)(index * ratio); // Conversion to int truncates (i.e. rounds down to nearest whole number)
+    
+    return realIndexToReturn;
+    //return [[self sectionIndexTitlesForTableView:tableView] indexOfObject:title];
+}
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.previousSelectionIndexPath = indexPath;
+    
     AW_PropertyViewController *nextVC = [[AW_PropertyViewController alloc]initWithNibName:@"AW_PropertyViewController" bundle:[NSBundle mainBundle]];
     
     nextVC.shape = self.tableData[indexPath.section][indexPath.row];
