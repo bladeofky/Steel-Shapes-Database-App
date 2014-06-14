@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_AboutViewController.h"
 #import "AW_NavigationController.h"
 #import "AW_DatabaseTableViewController.h"
 #import "AW_ShapeFamilyTableViewController.h"
@@ -44,7 +45,7 @@
     self.navigationItem.title = @"Select Database";
     
     // Configure nav bar buttons
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:self action:@selector(presentAboutVC)];
     
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
@@ -106,6 +107,14 @@
     shapeFamilyVC.database = database;
     
     [self.navigationController pushViewController:shapeFamilyVC animated:YES];
+}
+
+#pragma mark - Misc.
+- (void)presentAboutVC
+{
+    AW_AboutViewController *aboutVC = [[AW_AboutViewController alloc]initWithNibName:@"AW_AboutViewController" bundle:[NSBundle mainBundle]];
+    
+    [self presentViewController:aboutVC animated:YES completion:nil];
 }
 
 

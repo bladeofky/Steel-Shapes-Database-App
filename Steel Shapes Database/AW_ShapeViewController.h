@@ -16,5 +16,4 @@
 @property (nonatomic, weak) IBOutlet AW_InfoBar *infoBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
-
 @end

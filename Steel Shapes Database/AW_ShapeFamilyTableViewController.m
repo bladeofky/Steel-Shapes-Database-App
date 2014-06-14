@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSArray *tableData; // Two-Dimensional array storing shape families by section
 
+
 @end
 
 @implementation AW_ShapeFamilyTableViewController
@@ -35,6 +36,7 @@
         NSMutableDictionary *groupIndex = [[NSMutableDictionary alloc]init];
         
         for (AW_ShapeFamily *family in shapeFamilyList) {
+            
             NSString *groupName = family.group;
             NSMutableArray *groupStore;
             
@@ -121,8 +123,7 @@
     AW_ShapeFamily *family = self.tableData[indexPath.section][indexPath.row];
     cell.textLabel.text = family.displayName;
     
-//    UIImage *image = 
-//    cell.imageView.image = image;
+    cell.imageView.image = family.image;
     
     return cell;
 }

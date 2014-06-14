@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSIndexPath *selectedRow;
 @property BOOL bannerViewIsVisible;
 
+
 @end
 
 @implementation AW_PropertyViewController
@@ -92,6 +93,7 @@
 
     // Set up info bar
     self.infoBar.textLabel.text = [self.shape formattedDisplayNameForUnitSystem:[(AW_NavigationController *)self.navigationController isMetric]];
+    self.infoBar.imageView.image = self.shape.shapeFamily.image;
     
     // Set up tableView
     UINib *nib = [UINib nibWithNibName:@"AW_PropertyTableViewCell" bundle:[NSBundle mainBundle]];

@@ -15,11 +15,12 @@
 
 @property (nonatomic, strong) NSNumber *defaultOrder;
 @property (nonatomic, strong) NSString *displayName;
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong, readonly) UIImage *image;
 @property (nonatomic, strong) NSString *key;
 @property (nonatomic, strong) NSString *group;
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) AW_Database *database;
 @property (nonatomic, strong) NSSet *shapes;
+
 @end
 

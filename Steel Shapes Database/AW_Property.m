@@ -89,6 +89,13 @@ static int gcd(int n, int m)
     NSDecimalNumber *value;
     int displayType;
     
+    // Format output
+    NSNumberFormatter *valueFormatter = [[NSNumberFormatter alloc]init];
+    [valueFormatter setUsesSignificantDigits:YES];
+    [valueFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    valueFormatter.minimumSignificantDigits = 3;
+    valueFormatter.maximumSignificantDigits = 3;
+    
     // Get appropriate value
     if (isMetric) {
         value = self.met_value;
@@ -99,12 +106,6 @@ static int gcd(int n, int m)
         displayType = [self.imp_displayType intValue];
     }
     
-    // Format output
-    NSNumberFormatter *valueFormatter = [[NSNumberFormatter alloc]init];
-    [valueFormatter setUsesSignificantDigits:YES];
-    [valueFormatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    valueFormatter.minimumSignificantDigits = 3;
-    valueFormatter.maximumSignificantDigits = 5;
     
     if (displayType == 1) {
         // This is displayed as a whole or decimal value
@@ -187,6 +188,11 @@ static int gcd(int n, int m)
     NSString *mainScript = tokens[0];
     UIFont *mainFont = [UIFont fontWithName:symbolFont
                                        size:symbolSize];
+    
+    // Special action needed for the tan(ALPHA) property
+    if ([self.key rangeOfString:@"ALPHA"].location != NSNotFound) {
+        mainScript = [mainScript stringByReplacingOccurrencesOfString:@"ALPHA" withString:@"\u03B1"];
+    }
     
     NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",mainScript]
                                                                                attributes:@{NSFontAttributeName: mainFont} ];

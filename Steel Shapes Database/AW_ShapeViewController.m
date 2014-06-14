@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSArray *met_sectionIndex; // Stores ection titles for use in index bar
 @property (nonatomic, strong) NSIndexPath *previousSelectionIndexPath; // Store the last selected shape
 
+
 @end
 
 @implementation AW_ShapeViewController
@@ -138,6 +139,7 @@
     
     // Setup info bar
     self.infoBar.textLabel.text = self.shapeFamily.displayName;
+    self.infoBar.imageView.image = self.shapeFamily.image;
     
     // Setup table view
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
