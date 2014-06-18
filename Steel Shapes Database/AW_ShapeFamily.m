@@ -31,7 +31,7 @@
         NSDictionary *imageNameDictionary = @{@"W" : @"W2.png",
                                               @"M" : @"M.png",
                                               @"S" : @"S.png",
-                                              @"HP": @"H.png",
+                                              @"HP": @"HP.png",
                                               @"C" : @"C.png",
                                               @"MC": @"MC.png",
                                               @"WT": @"WT.png",
@@ -41,8 +41,8 @@
                                               @"2L": @"2L.png",
                                               @"HSSRect": @"HSSRect.png",
                                               @"HSSSquare": @"HSSSquare.png",
-                                              @"HSSRound": @"PIPE1.png",
-                                              @"PIPE" : @"PIPE1.png"
+                                              @"HSSRound": @"HSSRound.png",
+                                              @"PIPE" : @"PIPE.png"
                                               };
         
         _image = [UIImage imageNamed:imageNameDictionary[self.key]];        

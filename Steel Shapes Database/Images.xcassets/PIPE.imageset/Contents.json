@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "PIPE1.png"
+      "filename" : "PIPE.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "PIPE1@2x.png"
+      "filename" : "PIPE@2x.png"
     }
   ],
   "info" : {

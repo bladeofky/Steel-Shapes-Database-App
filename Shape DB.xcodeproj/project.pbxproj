@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		E70E54641946929A00F42655 /* AW_AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70E54631946929A00F42655 /* AW_AboutViewController.xib */; };
 		E70E5467194C8CA600F42655 /* AW_AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E5466194C8CA600F42655 /* AW_AboutViewController.m */; };
-		E70E5481194CAF0100F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E70E5480194CAF0100F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
+		E70E5491194E246600F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E70E5490194E246600F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */; };
+		E70E5495194FBA5100F42655 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E5494194FBA5100F42655 /* iRate.m */; };
 		E76C4041193A7D2A00800FAA /* AW_PropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C403F193A7D2A00800FAA /* AW_PropertyTableViewCell.m */; };
 		E76C4042193A7D2A00800FAA /* AW_PropertyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E76C4040193A7D2A00800FAA /* AW_PropertyTableViewCell.xib */; };
 		E76C405619439F9200800FAA /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76C405519439F9200800FAA /* iAd.framework */; };
@@ -56,7 +57,9 @@
 		E70E54631946929A00F42655 /* AW_AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_AboutViewController.xib; sourceTree = "<group>"; };
 		E70E5465194C8CA600F42655 /* AW_AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_AboutViewController.h; sourceTree = "<group>"; };
 		E70E5466194C8CA600F42655 /* AW_AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_AboutViewController.m; sourceTree = "<group>"; };
-		E70E5480194CAF0100F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
+		E70E5490194E246600F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = AW_Steel_Shapes_Database_Import_Utility.sqlite; sourceTree = "<group>"; };
+		E70E5493194FBA5100F42655 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		E70E5494194FBA5100F42655 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		E76C403E193A7D2A00800FAA /* AW_PropertyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_PropertyTableViewCell.h; sourceTree = "<group>"; };
 		E76C403F193A7D2A00800FAA /* AW_PropertyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_PropertyTableViewCell.m; sourceTree = "<group>"; };
 		E76C4040193A7D2A00800FAA /* AW_PropertyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_PropertyTableViewCell.xib; sourceTree = "<group>"; };
@@ -75,20 +78,20 @@
 		E7B1B30219356F7700054276 /* AW_PropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_PropertyViewController.h; sourceTree = "<group>"; };
 		E7B1B30319356F7700054276 /* AW_PropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_PropertyViewController.m; sourceTree = "<group>"; };
 		E7B1B30419356F7700054276 /* AW_PropertyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_PropertyViewController.xib; sourceTree = "<group>"; };
-		E7EEF1851925A8F80075D69B /* Steel Shapes Database.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Steel Shapes Database.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7EEF1851925A8F80075D69B /* Shape DB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shape DB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF1881925A8F80075D69B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E7EEF18A1925A8F80075D69B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E7EEF18C1925A8F80075D69B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E7EEF1901925A8F80075D69B /* Steel Shapes Database-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Steel Shapes Database-Info.plist"; sourceTree = "<group>"; };
+		E7EEF1901925A8F80075D69B /* Shape DB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shape DB-Info.plist"; sourceTree = "<group>"; };
 		E7EEF1921925A8F80075D69B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7EEF1941925A8F80075D69B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E7EEF1961925A8F80075D69B /* Steel Shapes Database-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Steel Shapes Database-Prefix.pch"; sourceTree = "<group>"; };
+		E7EEF1961925A8F80075D69B /* Shape DB-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shape DB-Prefix.pch"; sourceTree = "<group>"; };
 		E7EEF1971925A8F80075D69B /* AW_AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AW_AppDelegate.h; sourceTree = "<group>"; };
 		E7EEF1981925A8F80075D69B /* AW_AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AW_AppDelegate.m; sourceTree = "<group>"; };
 		E7EEF19A1925A8F80075D69B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E7EEF1A01925A8F90075D69B /* Steel Shapes DatabaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Steel Shapes DatabaseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7EEF1A01925A8F90075D69B /* Shape DBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shape DBTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7EEF1A11925A8F90075D69B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		E7EEF1A91925A8F90075D69B /* Steel Shapes DatabaseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Steel Shapes DatabaseTests-Info.plist"; sourceTree = "<group>"; };
+		E7EEF1A91925A8F90075D69B /* Shape DBTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shape DBTests-Info.plist"; sourceTree = "<group>"; };
 		E7EEF1AB1925A8F90075D69B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E7EEF1AD1925A8F90075D69B /* Steel_Shapes_DatabaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Steel_Shapes_DatabaseTests.m; sourceTree = "<group>"; };
 		E7EEF1B81925A98A0075D69B /* SteelShapesDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SteelShapesDatabase.xcdatamodel; sourceTree = "<group>"; };
@@ -131,6 +134,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E70E5492194FBA1F00F42655 /* iRate (third party) */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5493194FBA5100F42655 /* iRate.h */,
+				E70E5494194FBA5100F42655 /* iRate.m */,
+			);
+			name = "iRate (third party)";
+			sourceTree = "<group>";
+		};
 		E7B1B2E919314F5400054276 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +159,7 @@
 		E7EEF17C1925A8F70075D69B = {
 			isa = PBXGroup;
 			children = (
+				E70E5492194FBA1F00F42655 /* iRate (third party) */,
 				E7EEF18E1925A8F80075D69B /* Steel Shapes Database */,
 				E7EEF1A71925A8F90075D69B /* Steel Shapes DatabaseTests */,
 				E7EEF1871925A8F80075D69B /* Frameworks */,
@@ -157,8 +170,8 @@
 		E7EEF1861925A8F80075D69B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E7EEF1851925A8F80075D69B /* Steel Shapes Database.app */,
-				E7EEF1A01925A8F90075D69B /* Steel Shapes DatabaseTests.xctest */,
+				E7EEF1851925A8F80075D69B /* Shape DB.app */,
+				E7EEF1A01925A8F90075D69B /* Shape DBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,10 +206,10 @@
 		E7EEF18F1925A8F80075D69B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E7EEF1901925A8F80075D69B /* Steel Shapes Database-Info.plist */,
+				E7EEF1901925A8F80075D69B /* Shape DB-Info.plist */,
 				E7EEF1911925A8F80075D69B /* InfoPlist.strings */,
 				E7EEF1941925A8F80075D69B /* main.m */,
-				E7EEF1961925A8F80075D69B /* Steel Shapes Database-Prefix.pch */,
+				E7EEF1961925A8F80075D69B /* Shape DB-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,7 +226,7 @@
 		E7EEF1A81925A8F90075D69B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E7EEF1A91925A8F90075D69B /* Steel Shapes DatabaseTests-Info.plist */,
+				E7EEF1A91925A8F90075D69B /* Shape DBTests-Info.plist */,
 				E7EEF1AA1925A8F90075D69B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -239,7 +252,7 @@
 			children = (
 				E7EEF1C61925AA640075D69B /* Core Data Managed Objects */,
 				E7EEF1B71925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld */,
-				E70E5480194CAF0100F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
+				E70E5490194E246600F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite */,
 				E7EEF1C81925AB430075D69B /* AW_CoreDataStore.h */,
 				E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */,
 			);
@@ -271,9 +284,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E7EEF1841925A8F80075D69B /* Steel Shapes Database */ = {
+		E7EEF1841925A8F80075D69B /* Shape DB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7EEF1B11925A8F90075D69B /* Build configuration list for PBXNativeTarget "Steel Shapes Database" */;
+			buildConfigurationList = E7EEF1B11925A8F90075D69B /* Build configuration list for PBXNativeTarget "Shape DB" */;
 			buildPhases = (
 				E7EEF1811925A8F80075D69B /* Sources */,
 				E7EEF1821925A8F80075D69B /* Frameworks */,
@@ -283,14 +296,14 @@
 			);
 			dependencies = (
 			);
-			name = "Steel Shapes Database";
+			name = "Shape DB";
 			productName = "Steel Shapes Database";
-			productReference = E7EEF1851925A8F80075D69B /* Steel Shapes Database.app */;
+			productReference = E7EEF1851925A8F80075D69B /* Shape DB.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E7EEF19F1925A8F90075D69B /* Steel Shapes DatabaseTests */ = {
+		E7EEF19F1925A8F90075D69B /* Shape DBTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7EEF1B41925A8F90075D69B /* Build configuration list for PBXNativeTarget "Steel Shapes DatabaseTests" */;
+			buildConfigurationList = E7EEF1B41925A8F90075D69B /* Build configuration list for PBXNativeTarget "Shape DBTests" */;
 			buildPhases = (
 				E7EEF19C1925A8F90075D69B /* Sources */,
 				E7EEF19D1925A8F90075D69B /* Frameworks */,
@@ -301,9 +314,9 @@
 			dependencies = (
 				E7EEF1A61925A8F90075D69B /* PBXTargetDependency */,
 			);
-			name = "Steel Shapes DatabaseTests";
+			name = "Shape DBTests";
 			productName = "Steel Shapes DatabaseTests";
-			productReference = E7EEF1A01925A8F90075D69B /* Steel Shapes DatabaseTests.xctest */;
+			productReference = E7EEF1A01925A8F90075D69B /* Shape DBTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -316,12 +329,15 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Alan Wang";
 				TargetAttributes = {
+					E7EEF1841925A8F80075D69B = {
+						DevelopmentTeam = V9U3AP538W;
+					};
 					E7EEF19F1925A8F90075D69B = {
 						TestTargetID = E7EEF1841925A8F80075D69B;
 					};
 				};
 			};
-			buildConfigurationList = E7EEF1801925A8F70075D69B /* Build configuration list for PBXProject "Steel Shapes Database" */;
+			buildConfigurationList = E7EEF1801925A8F70075D69B /* Build configuration list for PBXProject "Shape DB" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -333,8 +349,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E7EEF1841925A8F80075D69B /* Steel Shapes Database */,
-				E7EEF19F1925A8F90075D69B /* Steel Shapes DatabaseTests */,
+				E7EEF1841925A8F80075D69B /* Shape DB */,
+				E7EEF19F1925A8F90075D69B /* Shape DBTests */,
 			);
 		};
 /* End PBXProject section */
@@ -350,7 +366,7 @@
 				E70E54641946929A00F42655 /* AW_AboutViewController.xib in Resources */,
 				E76C4042193A7D2A00800FAA /* AW_PropertyTableViewCell.xib in Resources */,
 				E7B1B2F9193388B000054276 /* AW_ShapeViewController.xib in Resources */,
-				E70E5481194CAF0100F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
+				E70E5491194E246600F42655 /* AW_Steel_Shapes_Database_Import_Utility.sqlite in Resources */,
 				E7B1B2EE1931516800054276 /* AW_InfoBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +391,7 @@
 				E7B1B2DE192D807D00054276 /* AW_ShapeFamilyTableViewController.m in Sources */,
 				E7EEF1C51925AA5D0075D69B /* AW_ShapeFamily.m in Sources */,
 				E70E5467194C8CA600F42655 /* AW_AboutViewController.m in Sources */,
+				E70E5495194FBA5100F42655 /* iRate.m in Sources */,
 				E7EEF1991925A8F80075D69B /* AW_AppDelegate.m in Sources */,
 				E7B1B2F719326E9300054276 /* AW_InfoBar.m in Sources */,
 				E7EEF1CA1925AB430075D69B /* AW_CoreDataStore.m in Sources */,
@@ -402,7 +419,7 @@
 /* Begin PBXTargetDependency section */
 		E7EEF1A61925A8F90075D69B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E7EEF1841925A8F80075D69B /* Steel Shapes Database */;
+			target = E7EEF1841925A8F80075D69B /* Shape DB */;
 			targetProxy = E7EEF1A51925A8F90075D69B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -459,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -491,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -502,10 +519,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Steel Shapes Database/Steel Shapes Database-Prefix.pch";
-				INFOPLIST_FILE = "Steel Shapes Database/Steel Shapes Database-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Steel Shapes Database/Shape DB-Prefix.pch";
+				INFOPLIST_FILE = "Steel Shapes Database/Shape DB-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "Shape DB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -515,10 +534,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Steel Shapes Database/Steel Shapes Database-Prefix.pch";
-				INFOPLIST_FILE = "Steel Shapes Database/Steel Shapes Database-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Steel Shapes Database/Shape DB-Prefix.pch";
+				INFOPLIST_FILE = "Steel Shapes Database/Shape DB-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = "Shape DB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -538,8 +559,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Steel Shapes DatabaseTests/Steel Shapes DatabaseTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Steel Shapes DatabaseTests/Shape DBTests-Info.plist";
+				PRODUCT_NAME = "Shape DBTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -556,8 +577,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Steel Shapes Database/Steel Shapes Database-Prefix.pch";
-				INFOPLIST_FILE = "Steel Shapes DatabaseTests/Steel Shapes DatabaseTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Steel Shapes DatabaseTests/Shape DBTests-Info.plist";
+				PRODUCT_NAME = "Shape DBTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -566,7 +587,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E7EEF1801925A8F70075D69B /* Build configuration list for PBXProject "Steel Shapes Database" */ = {
+		E7EEF1801925A8F70075D69B /* Build configuration list for PBXProject "Shape DB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E7EEF1AF1925A8F90075D69B /* Debug */,
@@ -575,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7EEF1B11925A8F90075D69B /* Build configuration list for PBXNativeTarget "Steel Shapes Database" */ = {
+		E7EEF1B11925A8F90075D69B /* Build configuration list for PBXNativeTarget "Shape DB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E7EEF1B21925A8F90075D69B /* Debug */,
@@ -584,7 +605,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7EEF1B41925A8F90075D69B /* Build configuration list for PBXNativeTarget "Steel Shapes DatabaseTests" */ = {
+		E7EEF1B41925A8F90075D69B /* Build configuration list for PBXNativeTarget "Shape DBTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E7EEF1B51925A8F90075D69B /* Debug */,
