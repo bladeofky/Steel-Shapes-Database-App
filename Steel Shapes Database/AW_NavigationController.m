@@ -32,6 +32,8 @@
     return _unitSystem;
 }
 
+#pragma mark - Initializers
+
 
 #pragma mark -
 - (void)viewDidLoad
@@ -40,6 +42,12 @@
     
     // Do any additional setup after loading the view.
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.tabBarController.tabBar.barTintColor = self.navigationBar.barTintColor;
+    self.tabBarController.tabBar.tintColor = self.navigationBar.tintColor;
 }
 
 - (void)didReceiveMemoryWarning

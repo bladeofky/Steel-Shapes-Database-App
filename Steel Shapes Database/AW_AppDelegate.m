@@ -10,6 +10,7 @@
 #import "AW_CoreDataStore.h"
 #import "AW_NavigationController.h"
 #import "AW_DatabaseTableViewController.h"
+#import "AW_AboutViewController.h"
 #import "AW_Database.h"
 
 @implementation AW_AppDelegate
@@ -19,14 +20,30 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Override point for customization after application launch.
+    
+    // For "Browse" tab
     AW_DatabaseTableViewController *databaseVC = [[AW_DatabaseTableViewController alloc] init];
     AW_NavigationController *navController = [[AW_NavigationController alloc] initWithRootViewController:databaseVC];
-
-//#warning Temporary manually set nav bar color for testing purposes
-//    navController.navigationBar.barTintColor = [UIColor colorWithRed:0.5 green:0 blue:0 alpha:1.0];
-//    navController.navigationBar.tintColor = [UIColor colorWithRed:1 green:.9 blue:0 alpha:1.0];
     
-    self.window.rootViewController = navController;
+    // For "Favorites" tab
+    UITableViewController *favController = [[UITableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    
+    // For "About" tab
+    AW_AboutViewController *aboutVC = [[AW_AboutViewController alloc]initWithNibName:@"AW_AboutViewController" bundle:[NSBundle mainBundle]];
+    
+    // Set icons and titles for tabs
+    // It would be nice to do this in the designated initializers of the VC's, but I don't know which ones they are
+    favController.tabBarItem.title = @"Favorites";
+    navController.tabBarItem.title = @"Browse";
+    aboutVC.tabBarItem.title = @"About";
+    
+    
+    // Root view controller
+    UITabBarController *tabBarController = [[UITabBarController alloc]init];
+    tabBarController.viewControllers = @[navController, favController, aboutVC];
+    tabBarController.tabBar.translucent = NO;
+    
+    self.window.rootViewController = tabBarController;
     
     
     self.window.backgroundColor = [UIColor whiteColor];

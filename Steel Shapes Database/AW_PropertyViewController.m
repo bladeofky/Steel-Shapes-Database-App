@@ -101,15 +101,26 @@
     
     // Set up iAd banner view
     ADBannerView *adView = [[ADBannerView alloc]initWithAdType:ADAdTypeBanner];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    adView.frame = CGRectMake(screenBounds.origin.x,
-                              screenBounds.size.height,
-                              screenBounds.size.width,
+    
+    // Puts the adView right beneath the tableView
+    adView.frame = CGRectMake(self.tableView.frame.origin.x,
+                              self.tabBarController.tabBar.frame.origin.y,
+                              self.tableView.frame.size.width,
                               adView.bounds.size.height);
+    
+    /*
+     It would be nice to not have to use the tab bar to position the ad view, but unfortunately the
+     tableView origin.y + height does not equal to the bottom position of the tableView when running on a 3.5"
+     screen. Possibly this is an issue with autoresizing masks.
+     
+     NSLog(@"TableView Origin Y = %f", self.tableView.frame.origin.y);
+     NSLog(@"TableView Height = %f", self.tableView.frame.size.height);
+     NSLog(@"TabBar Origin Y = %f", self.tabBarController.tabBar.frame.origin.y);
+     */
+    
     adView.delegate = self;
     [self.view addSubview:adView];
     
-    //adView.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *constraintWithTableView = [NSLayoutConstraint constraintWithItem:adView
                                                                                attribute:NSLayoutAttributeTop
                                                                                relatedBy:NSLayoutRelationEqual

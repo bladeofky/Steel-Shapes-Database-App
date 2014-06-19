@@ -66,24 +66,53 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"AW_ShapeFamilyViewController did load");
+    
     self.clearsSelectionOnViewWillAppear = NO;
     
     // Set table view stuff
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
-    // Set colors for navigation bar
-    self.navigationController.navigationBar.barTintColor = self.database.backgroundColor;
-    self.navigationController.navigationBar.tintColor = self.database.textColor;
-    
     // Set database title for navigation bar
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:17.0];   //Matches Apple's default nav bar title font
-    titleLabel.textColor = self.navigationController.navigationBar.tintColor;
+    titleLabel.textColor = self.database.textColor;
     titleLabel.text = self.database.shortName;
     [titleLabel sizeToFit];
     
     self.navigationItem.titleView = titleLabel;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"AW_ShapeFamilyViewController will appear");
+    
+    // Set colors for navigation bar and tab bar
+    // This is necessary in viewWillAppear to have a better transition between view controllers
+    self.navigationController.navigationBar.barTintColor = self.database.backgroundColor;
+    self.navigationController.navigationBar.tintColor = self.database.textColor;
+    ((UILabel *)self.navigationItem.titleView).textColor = self.database.textColor;
+    self.tabBarController.tabBar.barTintColor = self.database.backgroundColor;
+    self.tabBarController.tabBar.tintColor = self.database.textColor;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"AW_ShapeFamilyViewController did appear");
+    
+    // This is for the special case where you switch tabs while on this view controller
+    // For some reason, viewWillDisappear is fired when switching tabs, causing the title to lose its color,
+    // but viewWillAppear does not fire when switching back to the tab with this VC. viewDidAppear is fired,
+    // so the code to change the color back is included here.
+    ((UILabel *)self.navigationItem.titleView).textColor = self.database.textColor;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"AW_ShapeFamilyViewController will disappear");
+    // Return title view's color to default. This is necessary for consistency in colors when transitioning between views
+    ((UILabel *)self.navigationItem.titleView).textColor = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

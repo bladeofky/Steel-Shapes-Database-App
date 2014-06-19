@@ -1,5 +1,26 @@
 UPDATE LOG
 
+======= 2014-06-18 =======
+Added several databases (AISC 13th Ed. and AISC LRFD 3rd Ed.)
+Submitted v1.0 to the App Store for review.
+Implemented a tab bar controller and coordinated colors with navigation bar
+
+Possible Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view. (currently there is a way to dynamically size the cell, but it has performs issues for iOS6 and below).
+- Add images to property descriptions
+- Store each database in a different persistant store so that they can be downloaded/deleted at will
+
+Next Steps:
+- Implement Favorites view controller
+    - Store favorites in local directory using NSCoding. We do not want to have to access Core Data in order to reach our Favorited shapes.
+    - Create a FavoriteShape wrapper class to hold:
+        - Shape (AW_Shape)
+        - Database name (NSString). This will only be displayed as detailText in a UITableViewCell
+        - Appropriate colors (background and tint) for nav bar for database (consider moving UIColor setting for color descriptions (i.e. "black", "maroon") to this program rather than setting it in the import utility and storing it in the CoreData)
+        - Date added
+- Add icons for tab bar
+- Add more databases
+
 ======= 2014-06-07 =======
 Implemented iAd banner in AW_PropertyViewController
 Added index bar to AW_ShapeViewController

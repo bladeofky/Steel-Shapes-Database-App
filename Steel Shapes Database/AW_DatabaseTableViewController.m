@@ -51,11 +51,13 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    // Reset navigation bar colors to default
+    // Reset navigation and tab bar colors to default
     self.navigationController.navigationBar.barTintColor = nil;
     self.navigationController.navigationBar.tintColor = nil;
+    self.tabBarController.tabBar.barTintColor = nil;
+    self.tabBarController.tabBar.tintColor = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
