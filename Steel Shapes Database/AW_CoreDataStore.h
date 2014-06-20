@@ -11,7 +11,10 @@
 
 @interface AW_CoreDataStore : NSObject
 
+@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
+
 + (instancetype)sharedStore;
+
 - (NSArray *)fetchAW_DatabaseObjects;
 
 - (void)returnObjectToFault:(NSManagedObject *)object;

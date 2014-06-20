@@ -14,7 +14,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="LgD-Qx-2bn">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5aG-IY-LvV" customClass="AW_InfoBar">
@@ -41,13 +41,13 @@
                 <constraint firstItem="5aG-IY-LvV" firstAttribute="leading" secondItem="LgD-Qx-2bn" secondAttribute="leading" id="Azo-lu-BEh"/>
                 <constraint firstItem="5aG-IY-LvV" firstAttribute="top" secondItem="LgD-Qx-2bn" secondAttribute="top" constant="65" id="Pz1-PD-0Zc"/>
                 <constraint firstItem="PEb-CW-4Kf" firstAttribute="leading" secondItem="LgD-Qx-2bn" secondAttribute="leading" id="V3j-tT-wkr"/>
-                <constraint firstAttribute="bottom" secondItem="PEb-CW-4Kf" secondAttribute="bottom" id="brd-EL-al6"/>
+                <constraint firstAttribute="bottom" secondItem="PEb-CW-4Kf" secondAttribute="bottom" constant="49" id="brd-EL-al6"/>
                 <constraint firstAttribute="trailing" secondItem="PEb-CW-4Kf" secondAttribute="trailing" id="iSG-g7-pJw"/>
                 <constraint firstItem="PEb-CW-4Kf" firstAttribute="top" secondItem="5aG-IY-LvV" secondAttribute="bottom" id="rAI-ST-ENx"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

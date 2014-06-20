@@ -10,8 +10,15 @@
 #import "AW_CoreDataStore.h"
 #import "AW_NavigationController.h"
 #import "AW_DatabaseTableViewController.h"
+#import "AW_FavoritesTableViewController.h"
 #import "AW_AboutViewController.h"
 #import "AW_Database.h"
+
+//// test
+//#import "AW_Database.h"
+//#import "AW_ShapeFamily.h"
+//#import "AW_Shape.h"
+//#import "AW_PropertyViewController.h"
 
 @implementation AW_AppDelegate
 
@@ -23,25 +30,39 @@
     
     // For "Browse" tab
     AW_DatabaseTableViewController *databaseVC = [[AW_DatabaseTableViewController alloc] init];
-    AW_NavigationController *navController = [[AW_NavigationController alloc] initWithRootViewController:databaseVC];
+    AW_NavigationController *browseNavController = [[AW_NavigationController alloc] initWithRootViewController:databaseVC];
     
     // For "Favorites" tab
-    UITableViewController *favController = [[UITableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    AW_FavoritesTableViewController *favController = [[AW_FavoritesTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    AW_NavigationController *favNavController = [[AW_NavigationController alloc] initWithRootViewController:favController];
+    
+//    // TEST..........
+//    NSArray *databases = [[AW_CoreDataStore sharedStore]fetchAW_DatabaseObjects];
+//    AW_Database *database = databases[0];
+//    AW_ShapeFamily *randomFamily = database.shapeFamilies.allObjects[0];
+//    AW_Shape *randomShape = randomFamily.shapes.allObjects[0];
+//    
+//    [[AW_CoreDataStore sharedStore]returnObjectToFault:randomFamily];
+//    [[AW_CoreDataStore sharedStore]returnObjectToFault:database];
+//    
+//    AW_PropertyViewController *vc = [[AW_PropertyViewController alloc]initWithShape:randomShape];
+//    favController = vc;
+//    //.................
     
     // For "About" tab
     AW_AboutViewController *aboutVC = [[AW_AboutViewController alloc]initWithNibName:@"AW_AboutViewController" bundle:[NSBundle mainBundle]];
     
     // Set icons and titles for tabs
     // It would be nice to do this in the designated initializers of the VC's, but I don't know which ones they are
-    favController.tabBarItem.title = @"Favorites";
-    navController.tabBarItem.title = @"Browse";
+    favNavController.tabBarItem.title = @"Favorites";
+    browseNavController.tabBarItem.title = @"Browse";
     aboutVC.tabBarItem.title = @"About";
     
     
     // Root view controller
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
-    tabBarController.viewControllers = @[navController, favController, aboutVC];
-    tabBarController.tabBar.translucent = NO;
+    tabBarController.viewControllers = @[browseNavController, favNavController, aboutVC];
+    //tabBarController.tabBar.translucent = NO;
     
     self.window.rootViewController = tabBarController;
     

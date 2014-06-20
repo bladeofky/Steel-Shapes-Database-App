@@ -28,6 +28,6 @@
 
 - (NSAttributedString *)formattedSymbol;
 - (NSString *)formattedValueForUnitSystem: (BOOL)isMetric;
--(NSString *) formattedUnitsForUnitSystem:(BOOL)isMetric;
+- (NSString *)formattedUnitsForUnitSystem:(BOOL)isMetric;
 
 @end

@@ -10,7 +10,7 @@
 
 @interface AW_CoreDataStore ()
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
+
 @property (nonatomic, strong) NSManagedObjectModel *model;
 
 @end

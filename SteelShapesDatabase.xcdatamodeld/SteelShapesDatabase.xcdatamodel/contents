@@ -11,6 +11,14 @@
         <attribute name="textColor" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="shapeFamilies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AW_ShapeFamily" inverseName="database" inverseEntity="AW_ShapeFamily" syncable="YES"/>
     </entity>
+    <entity name="AW_FavoritedShape" representedClassName="AW_FavoritedShape" syncable="YES">
+        <attribute name="barTintColor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="databaseShortName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultUnitSystem" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tintColor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="shape" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AW_Shape" syncable="YES"/>
+    </entity>
     <entity name="AW_Property" representedClassName="AW_Property" syncable="YES">
         <attribute name="defaultOrder" optional="YES" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,5 +60,6 @@
         <element name="AW_Property" positionX="288" positionY="27" width="128" height="225"/>
         <element name="AW_Shape" positionX="106" positionY="-0" width="128" height="195"/>
         <element name="AW_ShapeFamily" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="AW_FavoritedShape" positionX="-54" positionY="135" width="128" height="135"/>
     </elements>
 </model>

@@ -18,6 +18,7 @@ Next Steps:
         - Database name (NSString). This will only be displayed as detailText in a UITableViewCell
         - Appropriate colors (background and tint) for nav bar for database (consider moving UIColor setting for color descriptions (i.e. "black", "maroon") to this program rather than setting it in the import utility and storing it in the CoreData)
         - Date added
+- Re-implement iAd banner so that we only have one instance of it (currently it does not dealloc when switching tabs)
 - Add icons for tab bar
 - Add more databases
 

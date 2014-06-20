@@ -15,6 +15,7 @@
 #import "AW_Database.h"
 #import "AW_ShapeFamily.h"
 #import "AW_Shape.h"
+#import "AW_FavoritedShape.h"
 #import "AW_Property.h"
 
 @interface AW_PropertyViewController () <ADBannerViewDelegate>
@@ -23,6 +24,10 @@
 @property (nonatomic, strong) NSIndexPath *selectedRow;
 @property BOOL bannerViewIsVisible;
 
+@property (nonatomic, strong) AW_Shape *shape;
+@property (nonatomic, copy) NSString *navTitleText; // Title text for navigation bar
+@property (nonatomic, strong) UIColor *barTintColor;
+@property (nonatomic, strong) UIColor *tintColor;
 
 @end
 
@@ -68,7 +73,35 @@
     return _tableData;
 }
 
-#pragma mark -
+#pragma mark - Custom Initializer
+-(instancetype) initWithShape:(AW_Shape *)shape
+{
+    self = [super initWithNibName:@"AW_PropertyViewController" bundle:[NSBundle mainBundle]];
+    
+    if (self) {
+        _shape = shape;
+        _navTitleText = shape.shapeFamily.database.shortName;
+        _barTintColor = shape.shapeFamily.database.backgroundColor;
+        _tintColor = shape.shapeFamily.database.textColor;
+    }
+    
+    return self;
+}
+
+-(instancetype) initWithFavoritedShape:(AW_FavoritedShape *)favShape
+{
+    self = [super initWithNibName:@"AW_PropertyViewController" bundle:[NSBundle mainBundle]];
+    
+    if (self) {
+        _shape = favShape.shape;
+        _navTitleText = favShape.databaseShortName;
+        _barTintColor = favShape.barTintColor;
+        _tintColor = favShape.tintColor;
+        
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -85,7 +118,7 @@
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.font = [UIFont boldSystemFontOfSize:17.0];   //Matches Apple's default nav bar title font
         titleLabel.textColor = self.navigationController.navigationBar.tintColor;
-        titleLabel.text = self.shape.shapeFamily.database.shortName;
+        titleLabel.text = self.navTitleText;
         [titleLabel sizeToFit];
         
         self.navigationItem.titleView = titleLabel;
@@ -141,14 +174,31 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    // Reload tableView
+    [self.tableView reloadData];
+    
+    // Change colors
+    self.navigationController.navigationBar.barTintColor = self.barTintColor;
+    self.navigationController.navigationBar.tintColor = self.tintColor;
+    ((UILabel *)self.navigationItem.titleView).textColor = self.tintColor;
+    self.tabBarController.tabBar.barTintColor = self.barTintColor;
+    self.tabBarController.tabBar.tintColor = self.tintColor;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     // Set target-action for unitSystem segmented control
     AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
     [navController.unitSystem addTarget:self
                                  action:@selector(switchImperialMetric)
                        forControlEvents:UIControlEventValueChanged];
     
-    // Reload tableView
-    [self.tableView reloadData];
+    // Change colors
+//    self.navigationController.navigationBar.barTintColor = self.barTintColor;
+//    self.navigationController.navigationBar.tintColor = self.tintColor;
+    ((UILabel *)self.navigationItem.titleView).textColor = self.tintColor;
+    self.tabBarController.tabBar.barTintColor = self.barTintColor;
+    self.tabBarController.tabBar.tintColor = self.tintColor;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -162,6 +212,8 @@
                               forControlEvents:UIControlEventValueChanged];
     }
     
+    // Return nav bar title color to default
+    ((UILabel *)self.navigationItem.titleView).textColor = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated

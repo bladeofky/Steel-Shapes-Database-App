@@ -105,7 +105,11 @@
     // For some reason, viewWillDisappear is fired when switching tabs, causing the title to lose its color,
     // but viewWillAppear does not fire when switching back to the tab with this VC. viewDidAppear is fired,
     // so the code to change the color back is included here.
+    self.navigationController.navigationBar.barTintColor = self.database.backgroundColor;
+    self.navigationController.navigationBar.tintColor = self.database.textColor;
     ((UILabel *)self.navigationItem.titleView).textColor = self.database.textColor;
+    self.tabBarController.tabBar.barTintColor = self.database.backgroundColor;
+    self.tabBarController.tabBar.tintColor = self.database.textColor;
 }
 
 -(void)viewWillDisappear:(BOOL)animated

@@ -14,4 +14,7 @@
 
 - (BOOL)isMetric;
 
+// See note on .m file
+//- (void)changeBarTintColorTo: (NSString *)barTintColorName andTintColorTo: (NSString *)tintColorName;
+
 @end

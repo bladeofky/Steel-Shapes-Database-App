@@ -76,6 +76,40 @@
     return isMetric;
 }
 
+// This code might be used if I ever decide to convert the color name to a UIColor in this app rather than store it as
+// a UIColor in CoreData
+
+//- (void)changeBarTintColorTo: (NSString *)barTintColorName andTintColorTo: (NSString *)tintColorName
+//{
+//    self.navigationBar.barTintColor = [self getColorForName:barTintColorName];
+//    self.navigationBar.tintColor = [self getColorForName:tintColorName];
+//}
+//
+//-(UIColor *)getColorForName: (NSString *)colorName
+//{
+//    UIColor *color;
+//    
+//    if ([colorName isEqualToString:@"Maroon"]) {
+//        color = [UIColor colorWithRed:0.5 green:0 blue:0 alpha:1.0];
+//    }
+//    else if ([colorName isEqualToString:@"Dark Blue"]) {
+//        color = [UIColor colorWithRed:0/255.0f green:58/255.0f blue:169/255.0f alpha:1.0f];
+//    }
+//    else if ([colorName isEqualToString:@"Black"]) {
+//        color = [UIColor blackColor];
+//    }
+//    else if ([colorName isEqualToString:@"White"]) {
+//        color = [UIColor whiteColor];
+//    }
+//    else if ([colorName isEqualToString:@"Gold"]) {
+//        color = [UIColor colorWithRed:1 green:1 blue:0 alpha:1.0];
+//    } // end else if
+//    else {
+//        color = nil;
+//    }
+//    
+//    return color;
+//}
 
 
 @end

@@ -161,6 +161,15 @@
     [self.tableView reloadData];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.barTintColor = self.shapeFamily.database.backgroundColor;
+    self.navigationController.navigationBar.tintColor = self.shapeFamily.database.textColor;
+    ((UILabel *)self.navigationItem.titleView).textColor = self.shapeFamily.database.textColor;
+    self.tabBarController.tabBar.barTintColor = self.shapeFamily.database.backgroundColor;
+    self.tabBarController.tabBar.tintColor = self.shapeFamily.database.textColor;
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     // Remove target-actions from the nav bar's unitSystem segmented control
@@ -280,9 +289,7 @@
 {
     self.previousSelectionIndexPath = indexPath;
     
-    AW_PropertyViewController *nextVC = [[AW_PropertyViewController alloc]initWithNibName:@"AW_PropertyViewController" bundle:[NSBundle mainBundle]];
-    
-    nextVC.shape = self.tableData[indexPath.section][indexPath.row];
+    AW_PropertyViewController *nextVC = [[AW_PropertyViewController alloc]initWithShape:self.tableData[indexPath.section][indexPath.row]];
     
     [self.navigationController pushViewController:nextVC animated:YES];
 }

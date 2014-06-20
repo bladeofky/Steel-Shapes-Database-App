@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class AW_Shape, AW_InfoBar;
+@class AW_Shape, AW_InfoBar, AW_FavoritedShape;
 
 @interface AW_PropertyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) AW_Shape *shape;
 @property (nonatomic, weak) IBOutlet AW_InfoBar *infoBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+-(instancetype) initWithShape:(AW_Shape *)shape;
+-(instancetype) initWithFavoritedShape:(AW_FavoritedShape *)favShape;
 
 @end
