@@ -1,5 +1,26 @@
 UPDATE LOG
 
+======= 2014-06-19 =======
+Added a FavoritedShape entity as a wrapper for Shape. This solution is so that we don't have to load the entire shape family's NSSet of shapes into memory just to access a single shape.
+Updated AW_PropertyViewController to initialize with either an AW_Shape or an AW_FavoritedShape
+Created a rudimentary AW_FavoritesTableViewController to make sure things work
+Coordinated color changes for tab bar
+Moved some stuff from viewWillAppear to viewDidAppear, because viewWillAppear is not called when switching back to a tab (even though viewWillDisappear is called when switching away from a tab).
+
+Possible Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view. (currently there is a way to dynamically size the cell, but it has performs issues for iOS6 and below).
+- Add images to property descriptions
+- Store each database in a different persistant store so that they can be downloaded/deleted at will
+
+Next Steps:
+- Finish implementation of Favorites tab
+    - Add an entity to store FavoritedShape in CoreData
+    - Hook up AW_FavoritesTableViewController to use this new entity
+    - Enable editing
+- Re-implement iAd banner so that we only have one instance of it (currently it does not dealloc when switching tabs)
+- Add icons for tab bar
+- Add more databases
+
 ======= 2014-06-18 =======
 Added several databases (AISC 13th Ed. and AISC LRFD 3rd Ed.)
 Submitted v1.0 to the App Store for review.

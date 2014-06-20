@@ -151,6 +151,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
     // Set target-action for unitSystem segmented control
     AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
     [navController.unitSystem addTarget:self
@@ -159,10 +164,8 @@
     
     // Reload tableView
     [self.tableView reloadData];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
+    
+    // Set colors
     self.navigationController.navigationBar.barTintColor = self.shapeFamily.database.backgroundColor;
     self.navigationController.navigationBar.tintColor = self.shapeFamily.database.textColor;
     ((UILabel *)self.navigationItem.titleView).textColor = self.shapeFamily.database.textColor;
