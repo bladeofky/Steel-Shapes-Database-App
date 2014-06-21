@@ -10,7 +10,7 @@
 
 @interface AW_CoreDataStore ()
 
-
+@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSManagedObjectModel *model;
 
 @end
@@ -86,6 +86,28 @@
     }
     
     return fetchedObjects;
+}
+
+- (AW_Shape *)fetchShapeWithImperialKey:(NSString *)impShapeKey fromDatabaseWithKey:(NSString *)databaseKey
+{
+    // Create fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"AW_Shape" inManagedObjectContext:self.context];
+    fetchRequest.entity = entity;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"imp_key = %@ && shapeFamily.database.key = %@", impShapeKey, databaseKey];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error;
+    NSArray *fetchedObjects = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    if (fetchedObjects == nil) {
+        NSLog(@"Shape with imp_key = %@, and database key = %@ was not found.", impShapeKey, databaseKey);
+        return nil;
+    }
+    
+    return fetchedObjects[0];
 }
 
 #pragma mark - Releasing memory

@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface AW_CoreDataStore : NSObject
+@class AW_Shape;
 
-@property (nonatomic, strong, readonly) NSManagedObjectContext *context;
+@interface AW_CoreDataStore : NSObject
 
 + (instancetype)sharedStore;
 
 - (NSArray *)fetchAW_DatabaseObjects;
+- (AW_Shape *)fetchShapeWithImperialKey:(NSString *)impShapeKey
+                    fromDatabaseWithKey:(NSString *)databaseKey;
 
 - (void)returnObjectToFault:(NSManagedObject *)object;
 - (void)resetContext;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_NavigationController.h"
 #import "AW_FavoritesTableViewController.h"
 #import "AW_PropertyViewController.h"
 #import "AW_Database.h"
@@ -13,46 +14,37 @@
 #import "AW_Shape.h"
 #import "AW_FavoritedShape.h"
 #import "AW_CoreDataStore.h"
+#import "AW_FavoritesStore.h"
+#import "AW_FavoritesTableViewCell.h"
 
 @interface AW_FavoritesTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *tableData;
+@property (nonatomic, strong) NSArray *tableData;
 
 @end
 
 @implementation AW_FavoritesTableViewController
 
--(NSMutableArray *)tableData
+#pragma mark - Custom Accessors
+-(NSArray *)tableData
 {
-    if (!_tableData) {
-        _tableData = [[NSMutableArray alloc]init];
-    }
-    
-    return _tableData;
+    return [[AW_FavoritesStore sharedStore]allItems];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    [self.tableView registerClass:[AW_FavoritesTableViewCell class] forCellReuseIdentifier:@"AW_FavoritesTableViewCell"];
     
-    // for testing: grab a random item from CoreData and add it to the array
+    // FOR TESTING - add a random shape to favorites list
     NSArray *databases = [[AW_CoreDataStore sharedStore]fetchAW_DatabaseObjects];
     AW_Database *database = databases[0];
-    AW_ShapeFamily *randomFamily = database.shapeFamilies.allObjects[0];
-    AW_Shape *randomShape = randomFamily.shapes.allObjects[0];
-    
-    AW_FavoritedShape *favShape = [[AW_FavoritedShape alloc]initWithShape:randomShape
-                                                                withOrder:[self.tableData count]
-                                                           withUnitSystem:0];
-    
-    [[AW_CoreDataStore sharedStore]returnObjectToFault:randomShape];
-    [[AW_CoreDataStore sharedStore]returnObjectToFault:randomFamily];
-    [[AW_CoreDataStore sharedStore]returnObjectToFault:database];
-    
-    [self.tableData insertObject:favShape atIndex:0];
+    AW_ShapeFamily *family = database.shapeFamilies.allObjects[0];
+    AW_Shape *shape = family.shapes.allObjects[0];
+    AW_FavoritedShape *favShape = [[AW_FavoritedShape alloc]initWithShape:shape withUnitSystem:0];
+    [[AW_FavoritesStore sharedStore]addShapeToTopOfList:favShape];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,6 +54,11 @@
     self.navigationController.navigationBar.tintColor = nil;
     self.tabBarController.tabBar.barTintColor = nil;
     self.tabBarController.tabBar.tintColor = nil;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,13 +83,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    AW_FavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AW_FavoritesTableViewCell" forIndexPath:indexPath];
     
     // Configure the cell...
     AW_FavoritedShape *favShape = self.tableData[indexPath.row];
     
-    cell.textLabel.text = [favShape.shape formattedDisplayNameForUnitSystem:favShape.defaultUnitSystem];
-    cell.detailTextLabel.text = favShape.databaseShortName;
+    cell.textLabel.text = [[favShape shape] formattedDisplayNameForUnitSystem:favShape.defaultUnitSystem];
+    cell.detailTextLabel.text = favShape.databaseLongName;
+    cell.imageView.image = [favShape shape].shapeFamily.image;
     
     return cell;
 }
@@ -100,7 +98,9 @@
 #pragma mark - Table View Delegate Methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AW_PropertyViewController *propertyVC = [[AW_PropertyViewController alloc]initWithFavoritedShape:self.tableData[indexPath.row]];
+    AW_FavoritedShape *favShape = self.tableData[indexPath.row];
+    AW_PropertyViewController *propertyVC = [[AW_PropertyViewController alloc]initWithFavoritedShape:favShape];
+    ((AW_NavigationController *)self.navigationController).unitSystem.selectedSegmentIndex = favShape.defaultUnitSystem;
     
     [self.navigationController pushViewController:propertyVC animated:YES];
 }
@@ -114,25 +114,34 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [[AW_FavoritesStore sharedStore]removeShapeFromList:self.tableData[indexPath.row]];
+        
+        // Delete the row from the tableView
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        // Currently unused
     }   
 }
-*/
 
-/*
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Remove";
+}
+
+
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 }
-*/
+
 
 /*
 // Override to support conditional rearranging of the table view.
@@ -143,15 +152,5 @@
 }
 */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

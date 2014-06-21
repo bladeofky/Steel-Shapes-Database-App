@@ -22,7 +22,9 @@
 
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSIndexPath *selectedRow;
+
 @property BOOL bannerViewIsVisible;
+@property (nonatomic, strong) ADBannerView *adView; // strong relationship because adView won't always be in a view's heirarchy
 
 @property (nonatomic, strong) AW_Shape *shape;
 @property (nonatomic, copy) NSString *navTitleText; // Title text for navigation bar
@@ -93,7 +95,7 @@
     self = [super initWithNibName:@"AW_PropertyViewController" bundle:[NSBundle mainBundle]];
     
     if (self) {
-        _shape = favShape.shape;
+        _shape = [favShape shape];
         _navTitleText = favShape.databaseShortName;
         _barTintColor = favShape.barTintColor;
         _tintColor = favShape.tintColor;
@@ -132,48 +134,19 @@
     UINib *nib = [UINib nibWithNibName:@"AW_PropertyTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"AW_PropertyTableViewCell"];
     
-    // Set up iAd banner view
-    ADBannerView *adView = [[ADBannerView alloc]initWithAdType:ADAdTypeBanner];
+//    UIButton *toggleFavorites = [UIButton buttonWithType:UIButtonTypeSystem];
+//    [toggleFavorites setTitle:@"Add to Favorites" forState:UIControlStateNormal];
+//    self.tableView.tableHeaderView = toggleFavorites;
     
-    // Puts the adView right beneath the tableView
-    adView.frame = CGRectMake(self.tableView.frame.origin.x,
-                              self.tabBarController.tabBar.frame.origin.y,
-                              self.tableView.frame.size.width,
-                              adView.bounds.size.height);
+    // Set up iAd view
+
     
-    /*
-     It would be nice to not have to use the tab bar to position the ad view, but unfortunately the
-     tableView origin.y + height does not equal to the bottom position of the tableView when running on a 3.5"
-     screen. Possibly this is an issue with autoresizing masks.
-     
-     NSLog(@"TableView Origin Y = %f", self.tableView.frame.origin.y);
-     NSLog(@"TableView Height = %f", self.tableView.frame.size.height);
-     NSLog(@"TabBar Origin Y = %f", self.tabBarController.tabBar.frame.origin.y);
-     */
-    
-    adView.delegate = self;
-    [self.view addSubview:adView];
-    
-    NSLayoutConstraint *constraintWithTableView = [NSLayoutConstraint constraintWithItem:adView
-                                                                               attribute:NSLayoutAttributeTop
-                                                                               relatedBy:NSLayoutRelationEqual
-                                                                                  toItem:self.tableView
-                                                                               attribute:NSLayoutAttributeBottom
-                                                                              multiplier:1.0
-                                                                                constant:0.0];
-    NSArray *horizontalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[adView]|"
-                                                                            options:0
-                                                                            metrics:nil
-                                                                              views:@{@"adView": adView}];
-    
-    [self.view addConstraints:horizontalConstraint];
-    [self.view addConstraint:constraintWithTableView];
-    
-    self.bannerViewIsVisible = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     // Reload tableView
     [self.tableView reloadData];
     
@@ -187,6 +160,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     // Set target-action for unitSystem segmented control
     AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
     [navController.unitSystem addTarget:self
@@ -194,15 +169,54 @@
                        forControlEvents:UIControlEventValueChanged];
     
     // Change colors
-//    self.navigationController.navigationBar.barTintColor = self.barTintColor;
-//    self.navigationController.navigationBar.tintColor = self.tintColor;
     ((UILabel *)self.navigationItem.titleView).textColor = self.tintColor;
     self.tabBarController.tabBar.barTintColor = self.barTintColor;
     self.tabBarController.tabBar.tintColor = self.tintColor;
+    
+    // Instantiate adView
+    self.adView = [[ADBannerView alloc]initWithAdType:ADAdTypeBanner];
+    
+    // Puts the adView right beneath the tableView
+    self.adView.frame = CGRectMake(self.tableView.frame.origin.x,
+                              self.tabBarController.tabBar.frame.origin.y,
+                              self.tableView.frame.size.width,
+                              self.adView.bounds.size.height);
+    
+    /*
+     It would be nice to not have to use the tab bar to position the ad view, but unfortunately the
+     tableView origin.y + height does not equal to the bottom position of the tableView when running on a 3.5"
+     screen. Possibly this is an issue with autoresizing masks.
+     
+     NSLog(@"TableView Origin Y = %f", self.tableView.frame.origin.y);
+     NSLog(@"TableView Height = %f", self.tableView.frame.size.height);
+     NSLog(@"TabBar Origin Y = %f", self.tabBarController.tabBar.frame.origin.y);
+     */
+    
+    self.adView.delegate = self;
+    [self.view addSubview:self.adView];
+    
+    NSLayoutConstraint *constraintWithTableView = [NSLayoutConstraint constraintWithItem:self.adView
+                                                                               attribute:NSLayoutAttributeTop
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:self.tableView
+                                                                               attribute:NSLayoutAttributeBottom
+                                                                              multiplier:1.0
+                                                                                constant:0.0];
+    NSArray *horizontalConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[adView]|"
+                                                                            options:0
+                                                                            metrics:nil
+                                                                              views:@{@"adView": self.adView}];
+    
+    [self.view addConstraints:horizontalConstraint];
+    [self.view addConstraint:constraintWithTableView];
+    
+    self.bannerViewIsVisible = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    
     // Remove target-actions from the nav bar's unitSystem segmented control
     if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
         AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
@@ -214,10 +228,17 @@
     
     // Return nav bar title color to default
     ((UILabel *)self.navigationItem.titleView).textColor = nil;
+    
+    // Deallocate adView when switching to another tab
+    [self.adView removeFromSuperview];
+    self.adView.delegate = nil;
+    self.adView = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
     // Return all managed objects to faults
     for (AW_Property *property in self.shape.properties)
     {
@@ -270,6 +291,7 @@
 }
 
 #pragma mark - Table View delegate methods
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedRow = indexPath;

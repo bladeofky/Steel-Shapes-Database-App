@@ -86,6 +86,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     NSLog(@"AW_ShapeFamilyViewController will appear");
     
     // Set colors for navigation bar and tab bar
@@ -99,6 +101,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     NSLog(@"AW_ShapeFamilyViewController did appear");
     
     // This is for the special case where you switch tabs while on this view controller
@@ -114,6 +117,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     NSLog(@"AW_ShapeFamilyViewController will disappear");
     // Return title view's color to default. This is necessary for consistency in colors when transitioning between views
     ((UILabel *)self.navigationItem.titleView).textColor = nil;
@@ -121,6 +125,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
     // Return all managed objects to faults
     for (AW_ShapeFamily *family in self.database.shapeFamilies)
     {

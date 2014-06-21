@@ -149,13 +149,10 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     // Set target-action for unitSystem segmented control
     AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
     [navController.unitSystem addTarget:self
@@ -175,6 +172,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    
     // Remove target-actions from the nav bar's unitSystem segmented control
     if ([self.navigationController isKindOfClass:[AW_NavigationController class]]) {
         AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
@@ -187,6 +186,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     // Return all managed objects to faults
     for (AW_Shape *shape in self.shapeFamily.shapes)
     {

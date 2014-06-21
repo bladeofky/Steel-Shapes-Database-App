@@ -46,6 +46,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     self.tabBarController.tabBar.barTintColor = self.navigationBar.barTintColor;
     self.tabBarController.tabBar.tintColor = self.navigationBar.tintColor;
 }

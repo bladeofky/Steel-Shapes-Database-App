@@ -1,5 +1,24 @@
 UPDATE LOG
 
+======= 2014-06-20 =======
+Removed FavoritedShape from CoreData model in favor of saving it in an archive. This will make it easier to persist the favorites when the CoreData database is updated.
+Implemented the AW_FavoritesTableViewController (editing enabled)
+iAd view will now deallocate from AW_PropertyViewController on viewWillDisappear, and is re-allocated and added on viewDidAppear. This will ensure that when switching tabs, the iAd view is deallocated properly when it is no longer in view. Testing with Allocations instrument shows that this is working as expected.
+Cleaned up some stuff (added [super view____] to all viewDidLoad, viewDidAppear, etc.
+
+Possible Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view. (currently there is a way to dynamically size the cell, but it has performs issues for iOS6 and below).
+- Add images to property descriptions
+- Store each database in a different persistant store so that they can be downloaded/deleted at will
+    - It is possible to use one persistant store coordinator with multiple stores
+    - We would want to not include the store with the bundle, but instead enable a way to download it from the web and keep it in the app's documents directory
+
+Next Steps:
+- Figure out a way to add an options menu to the AW_PropertyViewController in order to display options
+- Figure out how to add/remove favorites from the AW_PropertyViewController
+- Add icons to tab bar
+- Add databases
+
 ======= 2014-06-19 =======
 Added a FavoritedShape entity as a wrapper for Shape. This solution is so that we don't have to load the entire shape family's NSSet of shapes into memory just to access a single shape.
 Updated AW_PropertyViewController to initialize with either an AW_Shape or an AW_FavoritedShape

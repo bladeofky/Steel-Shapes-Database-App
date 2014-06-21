@@ -53,6 +53,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     // Reset navigation and tab bar colors to default
     self.navigationController.navigationBar.barTintColor = nil;
     self.navigationController.navigationBar.tintColor = nil;
@@ -62,6 +64,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
     // Return all managed objects to faults
     for (AW_Database *database in self.databaseList)
     {

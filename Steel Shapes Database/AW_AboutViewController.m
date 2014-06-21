@@ -18,19 +18,28 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleFingerTap)];
-    [self.view addGestureRecognizer:singleFingerTap];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.tabBarController.tabBar.barTintColor = [UIColor blackColor];
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+//    self.tabBarController.tabBar.barTintColor = nil;
+//    self.tabBarController.tabBar.tintColor = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)handleSingleFingerTap
-{
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

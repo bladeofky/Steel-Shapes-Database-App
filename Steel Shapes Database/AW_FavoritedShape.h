@@ -11,17 +11,19 @@
 
 @class AW_Shape;
 
-@interface AW_FavoritedShape : NSManagedObject
+@interface AW_FavoritedShape: NSObject <NSCoding>
 
 @property (nonatomic) BOOL defaultUnitSystem;
 @property (nonatomic, strong) UIColor *barTintColor;
+@property (nonatomic, strong) NSString *databaseKey;
 @property (nonatomic, strong) NSString *databaseShortName;
-@property (nonatomic) double order;
+@property (nonatomic, strong) NSString *databaseLongName;
 @property (nonatomic, strong) UIColor *tintColor;
-@property (nonatomic, strong) AW_Shape *shape;
+@property (nonatomic, strong) NSString *impShapeKey;    // Imperial key is used because it is more reliable (metric key is sometimes calculated)
 
 -(instancetype)initWithShape:(AW_Shape *)shape
-                   withOrder:(double)order
               withUnitSystem:(BOOL)unitSystem;
+
+- (AW_Shape *)shape;
 
 @end
