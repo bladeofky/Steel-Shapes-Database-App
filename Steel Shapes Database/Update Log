@@ -1,4 +1,18 @@
 UPDATE LOG
+======= 2014-06-22 =======
+Completed implementation of Favorites (added button to AW_PropertyViewController to add/remove favorites)
+Added icons to tab bar
+
+Possible Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view. (currently there is a way to dynamically size the cell, but it has performs issues for iOS6 and below).
+- Add images to property descriptions
+- Store each database in a different persistant store so that they can be downloaded/deleted at will
+    - It is possible to use one persistant store coordinator with multiple stores
+    - We would want to not include the store with the bundle, but instead enable a way to download it from the web and keep it in the app's documents directory
+    
+Next Steps:
+- Figure out a way to add an options menu to the AW_PropertyViewController in order to display options
+- Add databases
 
 ======= 2014-06-20 =======
 Removed FavoritedShape from CoreData model in favor of saving it in an archive. This will make it easier to persist the favorites when the CoreData database is updated.

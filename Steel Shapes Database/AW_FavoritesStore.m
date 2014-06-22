@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_CoreDataStore.h"
 #import "AW_FavoritesStore.h"
+#import "AW_Database.h"
+#import "AW_ShapeFamily.h"
+#import "AW_Shape.h"
 
 @interface AW_FavoritesStore()
 
@@ -82,6 +86,29 @@
     }
 }
 
+- (AW_FavoritedShape *)favoritedShapeWithShape:(AW_Shape *)shape;
+{
+    NSString *databaseKey = shape.shapeFamily.database.key;
+    NSString *impShapeKey = shape.imp_key;
+    
+    // Release unused memory
+    [[AW_CoreDataStore sharedStore]returnObjectToFault:shape.shapeFamily.database];
+    [[AW_CoreDataStore sharedStore]returnObjectToFault:shape.shapeFamily];
+    
+    NSPredicate *prediacte = [NSPredicate predicateWithFormat:@"databaseKey = %@ && impShapeKey = %@", databaseKey, impShapeKey];
+    NSArray *filterResults = [self.favoritesList filteredArrayUsingPredicate:prediacte];
+    
+    AW_FavoritedShape *output;
+    if ([filterResults count] == 0) {
+        output = nil;
+    }
+    else {
+        output = filterResults[0];
+    }
+    
+    return output;
+}
+
 #pragma mark - Persistance
 - (BOOL)saveStore
 {
@@ -93,7 +120,7 @@
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [documentDirectories firstObject];
     
-    NSString *path = [documentDirectory stringByAppendingString:@"favoritesList.archive"];
+    NSString *path = [documentDirectory stringByAppendingString:@"/favoritesList.archive"];
     
     return path;
 }

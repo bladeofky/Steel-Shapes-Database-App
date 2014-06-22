@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class AW_FavoritedShape;
+@class AW_FavoritedShape, AW_Shape;
 
 @interface AW_FavoritesStore : NSObject <NSCoding>
 
@@ -19,6 +19,8 @@
 - (void)removeShapeFromList:(AW_FavoritedShape *)shape;
 - (void)moveItemAtIndex:(NSUInteger)sourceIndex
                 toIndex:(NSUInteger)destinationIndex;
+
+- (AW_FavoritedShape *)favoritedShapeWithShape:(AW_Shape *)shape;
 
 - (BOOL)saveStore;
 

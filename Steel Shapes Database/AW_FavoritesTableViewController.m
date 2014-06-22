@@ -35,16 +35,9 @@
 {
     [super viewDidLoad];
 
+    self.navigationItem.title = @"Favorites";
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     [self.tableView registerClass:[AW_FavoritesTableViewCell class] forCellReuseIdentifier:@"AW_FavoritesTableViewCell"];
-    
-    // FOR TESTING - add a random shape to favorites list
-    NSArray *databases = [[AW_CoreDataStore sharedStore]fetchAW_DatabaseObjects];
-    AW_Database *database = databases[0];
-    AW_ShapeFamily *family = database.shapeFamilies.allObjects[0];
-    AW_Shape *shape = family.shapes.allObjects[0];
-    AW_FavoritedShape *favShape = [[AW_FavoritedShape alloc]initWithShape:shape withUnitSystem:0];
-    [[AW_FavoritesStore sharedStore]addShapeToTopOfList:favShape];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -54,10 +47,13 @@
     self.navigationController.navigationBar.tintColor = nil;
     self.tabBarController.tabBar.barTintColor = nil;
     self.tabBarController.tabBar.tintColor = nil;
+    
+    [self.tableView reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    // This seems redundant, but viewWillAppear is not called upon switching tabs, so it is necessary to reloadData again. If reloadData is NOT included in viewWillAppear, then it will awkwardly pop in after the view has already appeared.
     [self.tableView reloadData];
 }
 

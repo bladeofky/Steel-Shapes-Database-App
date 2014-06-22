@@ -43,8 +43,11 @@
     // Set icons and titles for tabs
     // It would be nice to do this in the designated initializers of the VC's, but I don't know which ones they are
     favNavController.tabBarItem.title = @"Favorites";
+    favNavController.tabBarItem.image = [UIImage imageNamed:@"starIcon.png"];
     browseNavController.tabBarItem.title = @"Browse";
+    browseNavController.tabBarItem.image = [UIImage imageNamed:@"browseIcon.png"];
     aboutVC.tabBarItem.title = @"About";
+    aboutVC.tabBarItem.image = [UIImage imageNamed:@"aboutIcon.png"];
     
     
     // Root view controller

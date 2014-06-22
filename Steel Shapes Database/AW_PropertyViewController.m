@@ -9,6 +9,7 @@
 #import <iAd/iAd.h>
 #import "AW_InfoBar.h"
 #import "AW_CoreDataStore.h"
+#import "AW_FavoritesStore.h"
 #import "AW_NavigationController.h"
 #import "AW_PropertyViewController.h"
 #import "AW_PropertyTableViewCell.h"
@@ -19,6 +20,8 @@
 #import "AW_Property.h"
 
 @interface AW_PropertyViewController () <ADBannerViewDelegate>
+
+@property (nonatomic, strong) UIButton *optionsButton;
 
 @property (nonatomic, strong) NSArray *tableData;
 @property (nonatomic, strong) NSIndexPath *selectedRow;
@@ -36,6 +39,28 @@
 @implementation AW_PropertyViewController
 
 #pragma mark - Custom Accessors
+
+- (UIButton *)optionsButton
+{
+    if (!_optionsButton) {
+        _optionsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_optionsButton sizeToFit];
+        [_optionsButton addTarget:self
+                           action:@selector(optionsButtonPressed)
+                 forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    AW_FavoritedShape *favShape = [[AW_FavoritesStore sharedStore]favoritedShapeWithShape:self.shape];
+    if (!favShape) {
+        [_optionsButton setTitle:@"Add to Favorites" forState:UIControlStateNormal];
+    }
+    else {
+        [_optionsButton setTitle:@"Remove from Favorites" forState:UIControlStateNormal];
+    }
+    
+    return _optionsButton;
+}
+
 -(NSArray *)tableData
 {
     if (!_tableData) {
@@ -134,9 +159,18 @@
     UINib *nib = [UINib nibWithNibName:@"AW_PropertyTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"AW_PropertyTableViewCell"];
     
-//    UIButton *toggleFavorites = [UIButton buttonWithType:UIButtonTypeSystem];
-//    [toggleFavorites setTitle:@"Add to Favorites" forState:UIControlStateNormal];
-//    self.tableView.tableHeaderView = toggleFavorites;
+//    UIImage *optionsButtonImage = [UIImage imageNamed:@"settings.png"];
+//    CGRect screenFrame = [UIScreen mainScreen].applicationFrame;
+//    CGFloat buttonWidth = 30.0;
+//    CGFloat buttonHeight = 30.0;
+//    CGPoint buttonOrigin = CGPointMake((screenFrame.size.width - buttonWidth)/2, 0);
+//    CGRect optionsButtonFrame = CGRectMake(buttonOrigin.x, buttonOrigin.y, buttonWidth, buttonHeight);
+//    UIButton *optionsButton = [[UIButton alloc]initWithFrame:optionsButtonFrame];
+//    [optionsButton setImage:optionsButtonImage forState:UIControlStateNormal];
+    
+    
+
+    self.tableView.tableHeaderView = self.optionsButton;
     
     // Set up iAd view
 
@@ -161,6 +195,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // Update favorites button
+    [self.optionsButton setNeedsDisplay];
     
     // Set target-action for unitSystem segmented control
     AW_NavigationController *navController = (AW_NavigationController *)self.navigationController;
@@ -351,6 +388,26 @@
 }
 
 #pragma mark - Custom methods
+- (void)optionsButtonPressed
+{
+    if ([self.optionsButton.titleLabel.text isEqualToString:@"Add to Favorites"]) {
+        
+        // Create the favorited shape and add it
+        BOOL unitSystem = [((AW_NavigationController *)self.navigationController)isMetric];
+        AW_FavoritedShape *favShape = [[AW_FavoritedShape alloc]initWithShape:self.shape
+                                                               withUnitSystem:unitSystem];
+        [[AW_FavoritesStore sharedStore]addShapeToTopOfList:favShape];
+        
+    }
+    else {
+        
+        // Get favorited shape from the store and remove it
+        AW_FavoritedShape *favShape = [[AW_FavoritesStore sharedStore]favoritedShapeWithShape:self.shape];
+        [[AW_FavoritesStore sharedStore]removeShapeFromList:favShape];
+    }
+    
+    [self.optionsButton setNeedsDisplay]; // Reload button text
+}
 
 // Shows a flip horizontal animation for the view currently at the top of the navigation stack
 -(void)switchImperialMetric

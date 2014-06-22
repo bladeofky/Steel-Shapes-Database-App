@@ -43,10 +43,6 @@
     
     // Configure nav bar title
     self.navigationItem.title = @"Select Database";
-    
-    // Configure nav bar buttons
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"About" style:UIBarButtonItemStylePlain target:self action:@selector(presentAboutVC)];
-    
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
 }
@@ -114,14 +110,5 @@
     
     [self.navigationController pushViewController:shapeFamilyVC animated:YES];
 }
-
-#pragma mark - Misc.
-- (void)presentAboutVC
-{
-    AW_AboutViewController *aboutVC = [[AW_AboutViewController alloc]initWithNibName:@"AW_AboutViewController" bundle:[NSBundle mainBundle]];
-    
-    [self presentViewController:aboutVC animated:YES completion:nil];
-}
-
 
 @end
