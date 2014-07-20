@@ -55,6 +55,7 @@
 {
     // This seems redundant, but viewWillAppear is not called upon switching tabs, so it is necessary to reloadData again. If reloadData is NOT included in viewWillAppear, then it will awkwardly pop in after the view has already appeared.
     [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning

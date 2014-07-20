@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *symbol;
 @property (nonatomic, strong) AW_Database *database;
 @property (nonatomic, strong) NSSet *shapes;
+@property (nonatomic, strong) NSSet *propertyDescriptions;
 
 @end
 

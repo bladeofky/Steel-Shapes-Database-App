@@ -146,7 +146,14 @@
     self.tableView.sectionIndexColor = self.navigationController.navigationBar.barTintColor;
     self.tableView.sectionIndexTrackingBackgroundColor = [UIColor colorWithRed:(247/255.0) green:(247/255.0) blue:(247/255.0) alpha:1.0];
     
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Reload tableView
+    [self.tableView reloadData]; // This is okay to put in viewWillAppear because nothing you do in other tabs should affect the Shape VC
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -158,9 +165,6 @@
     [navController.unitSystem addTarget:self
                                  action:@selector(switchImperialMetric)
                        forControlEvents:UIControlEventValueChanged];
-    
-    // Reload tableView
-    [self.tableView reloadData];
     
     // Set colors
     self.navigationController.navigationBar.barTintColor = self.shapeFamily.database.backgroundColor;

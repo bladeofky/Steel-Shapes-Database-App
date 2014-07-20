@@ -20,6 +20,7 @@
 @dynamic symbol;
 @dynamic database;
 @dynamic shapes;
+@dynamic propertyDescriptions;
 
 @synthesize image = _image;
 

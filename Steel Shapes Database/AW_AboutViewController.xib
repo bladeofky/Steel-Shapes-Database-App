@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -44,25 +44,25 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rL-2d-TcQ">
-                    <rect key="frame" x="20" y="270" width="116" height="20"/>
+                    <rect key="frame" x="20" y="253" width="116" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="243" translatesAutoresizingMaskIntoConstraints="NO" id="DJC-Pr-SpT">
-                    <rect key="frame" x="57" y="161" width="243" height="101"/>
+                    <rect key="frame" x="57" y="161" width="243" height="84"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <string key="text">This app uses data from the AISC Shape Database v14.1 and v14.1H. These resources are made freely available by AISC. Metric information is calculated from imperial data when unavailable.</string>
+                    <string key="text">This app uses data from the AISC Shape Database v14.1 and v14.1H. These resources are made freely available by AISC. Metric information is calculated from imperial data.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUO-i0-PJ9">
-                    <rect key="frame" x="57" y="298" width="243" height="201"/>
+                    <rect key="frame" x="57" y="281" width="243" height="218"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">The information presented in this application has been prepared in accordance with recognized engineering principles and is for general information only. While it is believed to be accurate, this information should not be used or relied upon for any specific application without competent professional examination and verification of its accuracy, suitability, and applicability by a licensed professional engineer, designer, or architect. The publication of the material contained herein is not intended as a representation or warranty on the part of the American Institute of Steel Construction or of any other person named herein, that this information is suitable for any general or particular use or of freedom from infringement of any patent or patents. Anyone making use of this information assumes all liability arising from such use.</mutableString>
+                    <string key="text">The information presented in this application has been prepared in accordance with recognized engineering principles and is for general information only. While it is believed to be accurate, this information should not be used or relied upon for any specific application without competent professional examination and verification of its accuracy, suitability, and applicability by a licensed professional engineer, designer, or architect. The publication of the material contained herein is not intended as a representation or warranty on the part of the American Institute of Steel Construction or of any other person named herein, that this information is suitable for any general or particular use or of freedom from infringement of any patent or patents. Anyone making use of this information assumes all liability arising from such use.</string>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

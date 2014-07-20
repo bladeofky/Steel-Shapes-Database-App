@@ -7,6 +7,7 @@
 //
 
 #import "AW_Property.h"
+#import "AW_PropertyDescription.h"
 #import "AW_Shape.h"
 
 // C-style helper function to calculate the greatest common divisor of two numbers n and m where m > n
@@ -30,18 +31,64 @@ static int gcd(int n, int m)
 
 @implementation AW_Property
 
-@dynamic defaultOrder;
-@dynamic imp_displayType;
-@dynamic met_displayType;
-@dynamic imp_units;
 @dynamic imp_value;
 @dynamic key;
-@dynamic met_units;
-@dynamic met_value;
-@dynamic symbol;
 @dynamic shape;
-@dynamic longDescription;
-@dynamic group;
+@dynamic propertyDescription;
+
+#pragma mark - Accessors
+
+- (NSString *)met_units
+{
+    return self.propertyDescription.met_units;
+}
+
+- (NSDecimalNumber *)impToMetFactor
+{
+    return self.propertyDescription.impToMetFactor;
+}
+
+- (NSString *)symbol
+{
+    return self.propertyDescription.symbol;
+}
+
+- (NSString *)longDescription
+{
+    return self.propertyDescription.longDescription;
+}
+
+- (NSString *)group
+{
+    return self.propertyDescription.group;
+}
+
+-(NSNumber *)defaultOrder
+{
+    return self.propertyDescription.defaultOrder;
+}
+
+- (NSNumber *)imp_displayType
+{
+    return self.propertyDescription.imp_displayType;
+}
+
+- (NSNumber *)met_displayType
+{
+    return self.propertyDescription.met_displayType;
+}
+
+-(NSString *)imp_units
+{
+    return self.propertyDescription.imp_units;
+}
+
+- (NSDecimalNumber *)met_value
+{
+    return [self.imp_value decimalNumberByMultiplyingBy:self.impToMetFactor];
+}
+
+#pragma mark - Custom methods
 
 - (NSAttributedString *)formattedSymbol
 {
