@@ -28,7 +28,7 @@
         <attribute name="met_displayType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="met_units" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="shapeFamilies" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="AW_ShapeFamily" inverseName="propertyDescriptions" inverseEntity="AW_ShapeFamily" syncable="YES"/>
+        <relationship name="shapeFamilies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AW_ShapeFamily" inverseName="propertyDescriptions" inverseEntity="AW_ShapeFamily" syncable="YES"/>
     </entity>
     <entity name="AW_Shape" representedClassName="AW_Shape" syncable="YES">
         <attribute name="defaultOrder" optional="YES" attributeType="Decimal" defaultValueString="0" syncable="YES"/>
@@ -56,8 +56,8 @@
     <elements>
         <element name="AW_Database" positionX="-288" positionY="-9" width="128" height="180"/>
         <element name="AW_Property" positionX="288" positionY="27" width="128" height="103"/>
+        <element name="AW_PropertyDescription" positionX="-72" positionY="90" width="128" height="208"/>
         <element name="AW_Shape" positionX="106" positionY="-0" width="128" height="193"/>
         <element name="AW_ShapeFamily" positionX="-54" positionY="-9" width="128" height="178"/>
-        <element name="AW_PropertyDescription" positionX="-72" positionY="90" width="128" height="208"/>
     </elements>
 </model>
