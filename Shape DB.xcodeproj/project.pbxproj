@@ -14,6 +14,10 @@
 		E70E54A01953D0B100F42655 /* AW_FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E549F1953D0B100F42655 /* AW_FavoritesTableViewController.m */; };
 		E70E54A51954F03100F42655 /* AW_FavoritesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E54A41954F03100F42655 /* AW_FavoritesStore.m */; };
 		E70E54A81955158E00F42655 /* AW_FavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E70E54A71955158E00F42655 /* AW_FavoritesTableViewCell.m */; };
+		E71CF0FA197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71CF0F9197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m */; };
+		E71CF0FD197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E71CF0FC197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m */; };
+		E71CF101197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71CF100197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.m */; };
+		E71CF10419808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71CF10319808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.m */; };
 		E76C4041193A7D2A00800FAA /* AW_PropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C403F193A7D2A00800FAA /* AW_PropertyTableViewCell.m */; };
 		E76C4042193A7D2A00800FAA /* AW_PropertyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E76C4040193A7D2A00800FAA /* AW_PropertyTableViewCell.xib */; };
 		E76C405619439F9200800FAA /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76C405519439F9200800FAA /* iAd.framework */; };
@@ -72,6 +76,15 @@
 		E70E54A41954F03100F42655 /* AW_FavoritesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_FavoritesStore.m; sourceTree = "<group>"; };
 		E70E54A61955158E00F42655 /* AW_FavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_FavoritesTableViewCell.h; sourceTree = "<group>"; };
 		E70E54A71955158E00F42655 /* AW_FavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_FavoritesTableViewCell.m; sourceTree = "<group>"; };
+		E71CF0F8197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_SearchCriteriaTableViewController.h; sourceTree = "<group>"; };
+		E71CF0F9197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_SearchCriteriaTableViewController.m; sourceTree = "<group>"; };
+		E71CF0FB197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_PropertyCriteriaObject.h; sourceTree = "<group>"; };
+		E71CF0FC197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_PropertyCriteriaObject.m; sourceTree = "<group>"; };
+		E71CF0FE197DDDD100FDE2B8 /* AW_EnumHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_EnumHeader.h; sourceTree = "<group>"; };
+		E71CF0FF197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_DatabaseSelectorModalTableViewController.h; sourceTree = "<group>"; };
+		E71CF100197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_DatabaseSelectorModalTableViewController.m; sourceTree = "<group>"; };
+		E71CF10219808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_ShapeFamilySelectorModalTableViewController.h; sourceTree = "<group>"; };
+		E71CF10319808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_ShapeFamilySelectorModalTableViewController.m; sourceTree = "<group>"; };
 		E76C403E193A7D2A00800FAA /* AW_PropertyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_PropertyTableViewCell.h; sourceTree = "<group>"; };
 		E76C403F193A7D2A00800FAA /* AW_PropertyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_PropertyTableViewCell.m; sourceTree = "<group>"; };
 		E76C4040193A7D2A00800FAA /* AW_PropertyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AW_PropertyTableViewCell.xib; sourceTree = "<group>"; };
@@ -158,6 +171,59 @@
 			name = "iRate (third party)";
 			sourceTree = "<group>";
 		};
+		E71CF0F3197DD46A00FDE2B8 /* Favorites Tab */ = {
+			isa = PBXGroup;
+			children = (
+				E70E549B1953C87F00F42655 /* AW_FavoritedShape.h */,
+				E70E549C1953C87F00F42655 /* AW_FavoritedShape.m */,
+				E70E54A31954F03100F42655 /* AW_FavoritesStore.h */,
+				E70E54A41954F03100F42655 /* AW_FavoritesStore.m */,
+				E70E549E1953D0B100F42655 /* AW_FavoritesTableViewController.h */,
+				E70E549F1953D0B100F42655 /* AW_FavoritesTableViewController.m */,
+			);
+			name = "Favorites Tab";
+			sourceTree = "<group>";
+		};
+		E71CF0F4197DD47400FDE2B8 /* About Tab */ = {
+			isa = PBXGroup;
+			children = (
+				E70E5465194C8CA600F42655 /* AW_AboutViewController.h */,
+				E70E5466194C8CA600F42655 /* AW_AboutViewController.m */,
+				E70E54631946929A00F42655 /* AW_AboutViewController.xib */,
+			);
+			name = "About Tab";
+			sourceTree = "<group>";
+		};
+		E71CF0F5197DD48E00FDE2B8 /* Browse Tab */ = {
+			isa = PBXGroup;
+			children = (
+				E7EEF1CE1925B73B0075D69B /* AW_DatabaseTableViewController.h */,
+				E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */,
+				E7B1B2DC192D807D00054276 /* AW_ShapeFamilyTableViewController.h */,
+				E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */,
+				E7B1B2EF1931541E00054276 /* AW_ShapeViewController.h */,
+				E7B1B2F01931541E00054276 /* AW_ShapeViewController.m */,
+				E7B1B2F8193388B000054276 /* AW_ShapeViewController.xib */,
+			);
+			name = "Browse Tab";
+			sourceTree = "<group>";
+		};
+		E71CF0F7197DD8F300FDE2B8 /* Search Tab */ = {
+			isa = PBXGroup;
+			children = (
+				E71CF0FE197DDDD100FDE2B8 /* AW_EnumHeader.h */,
+				E71CF0F8197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.h */,
+				E71CF0F9197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m */,
+				E71CF0FF197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.h */,
+				E71CF100197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.m */,
+				E71CF10219808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.h */,
+				E71CF10319808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.m */,
+				E71CF0FB197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.h */,
+				E71CF0FC197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m */,
+			);
+			name = "Search Tab";
+			sourceTree = "<group>";
+		};
 		E7B1B2E919314F5400054276 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,12 +275,16 @@
 			isa = PBXGroup;
 			children = (
 				E7B1B2DF192D92EA00054276 /* Update Log */,
-				E70E549B1953C87F00F42655 /* AW_FavoritedShape.h */,
-				E70E549C1953C87F00F42655 /* AW_FavoritedShape.m */,
-				E70E54A31954F03100F42655 /* AW_FavoritesStore.h */,
-				E70E54A41954F03100F42655 /* AW_FavoritesStore.m */,
 				E7EEF1C71925AAA60075D69B /* Core Data */,
-				E7EEF1CD1925B6F80075D69B /* View Controllers */,
+				E71CF0F5197DD48E00FDE2B8 /* Browse Tab */,
+				E71CF0F3197DD46A00FDE2B8 /* Favorites Tab */,
+				E71CF0F7197DD8F300FDE2B8 /* Search Tab */,
+				E71CF0F4197DD47400FDE2B8 /* About Tab */,
+				E771CD32192ABD3C00A626B5 /* AW_NavigationController.h */,
+				E771CD33192ABD3C00A626B5 /* AW_NavigationController.m */,
+				E7B1B30219356F7700054276 /* AW_PropertyViewController.h */,
+				E7B1B30319356F7700054276 /* AW_PropertyViewController.m */,
+				E7B1B30419356F7700054276 /* AW_PropertyViewController.xib */,
 				E7B1B2E919314F5400054276 /* Views */,
 				E7EEF1971925A8F80075D69B /* AW_AppDelegate.h */,
 				E7EEF1981925A8F80075D69B /* AW_AppDelegate.m */,
@@ -280,30 +350,6 @@
 				E7EEF1C91925AB430075D69B /* AW_CoreDataStore.m */,
 			);
 			name = "Core Data";
-			sourceTree = "<group>";
-		};
-		E7EEF1CD1925B6F80075D69B /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				E70E549E1953D0B100F42655 /* AW_FavoritesTableViewController.h */,
-				E70E549F1953D0B100F42655 /* AW_FavoritesTableViewController.m */,
-				E70E5465194C8CA600F42655 /* AW_AboutViewController.h */,
-				E70E5466194C8CA600F42655 /* AW_AboutViewController.m */,
-				E70E54631946929A00F42655 /* AW_AboutViewController.xib */,
-				E771CD32192ABD3C00A626B5 /* AW_NavigationController.h */,
-				E771CD33192ABD3C00A626B5 /* AW_NavigationController.m */,
-				E7EEF1CE1925B73B0075D69B /* AW_DatabaseTableViewController.h */,
-				E7EEF1CF1925B73B0075D69B /* AW_DatabaseTableViewController.m */,
-				E7B1B2DC192D807D00054276 /* AW_ShapeFamilyTableViewController.h */,
-				E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */,
-				E7B1B2EF1931541E00054276 /* AW_ShapeViewController.h */,
-				E7B1B2F01931541E00054276 /* AW_ShapeViewController.m */,
-				E7B1B2F8193388B000054276 /* AW_ShapeViewController.xib */,
-				E7B1B30219356F7700054276 /* AW_PropertyViewController.h */,
-				E7B1B30319356F7700054276 /* AW_PropertyViewController.m */,
-				E7B1B30419356F7700054276 /* AW_PropertyViewController.xib */,
-			);
-			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,6 +461,8 @@
 				E7EEF1C31925AA5D0075D69B /* AW_Property.m in Sources */,
 				E7B1B2DE192D807D00054276 /* AW_ShapeFamilyTableViewController.m in Sources */,
 				E7EEF1C51925AA5D0075D69B /* AW_ShapeFamily.m in Sources */,
+				E71CF0FD197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m in Sources */,
+				E71CF101197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.m in Sources */,
 				E70E5467194C8CA600F42655 /* AW_AboutViewController.m in Sources */,
 				E70E5495194FBA5100F42655 /* iRate.m in Sources */,
 				E7EEF1991925A8F80075D69B /* AW_AppDelegate.m in Sources */,
@@ -424,12 +472,14 @@
 				E771CD34192ABD3C00A626B5 /* AW_NavigationController.m in Sources */,
 				E78D137A197C5B9A0011D7FD /* AW_PropertyDescription.m in Sources */,
 				E70E54A01953D0B100F42655 /* AW_FavoritesTableViewController.m in Sources */,
+				E71CF0FA197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m in Sources */,
 				E70E549D1953C87F00F42655 /* AW_FavoritedShape.m in Sources */,
 				E7EEF1B91925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld in Sources */,
 				E70E54A51954F03100F42655 /* AW_FavoritesStore.m in Sources */,
 				E76C4041193A7D2A00800FAA /* AW_PropertyTableViewCell.m in Sources */,
 				E7EEF1951925A8F80075D69B /* main.m in Sources */,
 				E7EEF1D01925B73B0075D69B /* AW_DatabaseTableViewController.m in Sources */,
+				E71CF10419808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.m in Sources */,
 				E7EEF1C41925AA5D0075D69B /* AW_Shape.m in Sources */,
 				E7B1B2F11931541E00054276 /* AW_ShapeViewController.m in Sources */,
 				E7B1B30519356F7700054276 /* AW_PropertyViewController.m in Sources */,

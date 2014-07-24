@@ -36,7 +36,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"Favorites";
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView registerClass:[AW_FavoritesTableViewCell class] forCellReuseIdentifier:@"AW_FavoritesTableViewCell"];
 }
 

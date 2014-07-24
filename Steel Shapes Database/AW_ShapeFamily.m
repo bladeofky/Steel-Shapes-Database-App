@@ -52,5 +52,10 @@
     return _image;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ in %@", self.displayName, self.database.shortName];
+}
+
 @end
 

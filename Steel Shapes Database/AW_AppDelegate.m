@@ -12,6 +12,7 @@
 #import "AW_NavigationController.h"
 #import "AW_DatabaseTableViewController.h"
 #import "AW_FavoritesTableViewController.h"
+#import "AW_SearchCriteriaTableViewController.h"
 #import "AW_AboutViewController.h"
 #import "AW_Database.h"
 
@@ -37,6 +38,10 @@
     AW_FavoritesTableViewController *favController = [[AW_FavoritesTableViewController alloc]initWithStyle:UITableViewStylePlain];
     AW_NavigationController *favNavController = [[AW_NavigationController alloc] initWithRootViewController:favController];
     
+    // For "Search" tab
+    AW_SearchCriteriaTableViewController *searchController = [[AW_SearchCriteriaTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    AW_NavigationController *searchNavController = [[AW_NavigationController alloc] initWithRootViewController:searchController];
+    
     // For "About" tab
     AW_AboutViewController *aboutVC = [[AW_AboutViewController alloc]initWithNibName:@"AW_AboutViewController" bundle:[NSBundle mainBundle]];
     
@@ -46,13 +51,14 @@
     favNavController.tabBarItem.image = [UIImage imageNamed:@"starIcon.png"];
     browseNavController.tabBarItem.title = @"Browse";
     browseNavController.tabBarItem.image = [UIImage imageNamed:@"browseIcon.png"];
+    searchNavController.tabBarItem.title = @"Search";
     aboutVC.tabBarItem.title = @"About";
     aboutVC.tabBarItem.image = [UIImage imageNamed:@"aboutIcon.png"];
     
     
     // Root view controller
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
-    tabBarController.viewControllers = @[browseNavController, favNavController, aboutVC];
+    tabBarController.viewControllers = @[browseNavController, favNavController, searchNavController, aboutVC];
     //tabBarController.tabBar.translucent = NO;
     
     self.window.rootViewController = tabBarController;
