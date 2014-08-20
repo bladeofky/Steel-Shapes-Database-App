@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /* The purpose of this header is solely to hold the definition of enums so that we can import them into other files */
-enum relationalOperator {LESS_THAN, LESS_THAN_OR_EQUAL_TO, EQUAL_TO, GREATER_THAN_OR_EQUAL_TO, GREATER_THAN};
+enum relationalOperator {LESS_THAN = 0, LESS_THAN_OR_EQUAL_TO = 1, EQUAL_TO = 2, GREATER_THAN_OR_EQUAL_TO = 3, GREATER_THAN = 4};
 
 @interface AW_EnumHeader : NSObject
 

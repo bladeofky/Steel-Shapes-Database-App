@@ -9,8 +9,10 @@
 #import "AW_SearchCriteriaTableViewController.h"
 #import "AW_ShapeFamily.h"
 #import "AW_PropertyCriteriaObject.h"
-#import "AW_DatabaseSelectorModalTableViewController.h"
-#import "AW_ShapeFamilySelectorModalTableViewController.h"
+#import "AW_PropertyDescription.h"
+#import "AW_AddPropertyCriteriaViewController.h"
+#import "AW_PropertyCriteriaTableViewCell.h"
+#import "AW_NavigationController.h"
 
 @interface AW_SearchCriteriaTableViewController ()
 
@@ -18,18 +20,7 @@
 
 @implementation AW_SearchCriteriaTableViewController
 
-- (NSArray *)shapeFamilyCriteria
-{
-    if (_shapeFamilyCriteria) {
-        // If the shape families do not match the databaseCriteria, remove the shapeFamilyCriteria
-        AW_ShapeFamily *family = _shapeFamilyCriteria[0];   // If _shapeFamilyCriteria exists, it must contain at least one object
-        if (![self.databaseCriteria.key isEqual:family.database.key]) {
-            _shapeFamilyCriteria = nil;
-        }
-    }
-    
-    return _shapeFamilyCriteria;
-}
+#pragma mark - Custom accessors
 
 - (void)viewDidLoad
 {
@@ -50,6 +41,7 @@
     
     // Set up table view stuff
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AW_PropertyCriteriaTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"AW_PropertyCriteriaTableViewCell"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -137,13 +129,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
+    UITableViewCell *cell;
     NSUInteger section = indexPath.section;
     
     // DATABASE CRITERIA
     // Note: We need to set the image every time, because cells are not removed from memory when the Clear button is pressed.
     if (section == 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+        
         if (!self.databaseCriteria) {
             cell.textLabel.text = @"Select Database";
             cell.imageView.image = nil;
@@ -156,6 +149,8 @@
     
     // SHAPE FAMILY CRITERIA
     else if (section == 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+        
         if (!self.shapeFamilyCriteria) {
             // If no shape families selected, present cell to select them
             cell.textLabel.text = @"Select Shape(s)";
@@ -171,6 +166,8 @@
     
     // PROPERTY CRITERIA
     else if (section == 2) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"AW_PropertyCriteriaTableViewCell" forIndexPath:indexPath];
+        
         if (!self.propertyCriteria) {
             // If no property criteria are present, present cell to select them
             cell.textLabel.text = @"Add Search Criteria";
@@ -178,14 +175,20 @@
         }
         else {
             // Display property criteria
+            cell.textLabel.text = nil;
             AW_PropertyCriteriaObject *propertyCriteriaObject = self.propertyCriteria[indexPath.row];
-            cell.textLabel.attributedText = [propertyCriteriaObject summary];
-            cell.imageView.image = nil;
+            AW_PropertyCriteriaTableViewCell *propertyCriteriaCell = (AW_PropertyCriteriaTableViewCell *)cell;
+            propertyCriteriaCell.symbolLabel.attributedText = [propertyCriteriaObject symbol];
+            propertyCriteriaCell.relationshipLabel.text = [propertyCriteriaObject relationshipSymbol];
+            propertyCriteriaCell.valueLabel.text = [NSString stringWithFormat:@"%@", propertyCriteriaObject.value];
+            propertyCriteriaCell.unitsLabel.text = [propertyCriteriaObject units];
         }
     }
     
     // SEARCH BUTTON
     else if (section == 3) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+        
         cell.textLabel.text = @"Search...";
     }
     
@@ -236,12 +239,19 @@
     
     // PROPERTY CRITERIA
     else if (section == 2) {
-        if (!self.propertyCriteria) {
-            // Present Add Search Criteria modal vc
+
+        AW_AddPropertyCriteriaViewController *modalVC = [[AW_AddPropertyCriteriaViewController alloc]initWithNibName:@"AW_AddPropertyCriteriaViewController" bundle:[NSBundle mainBundle]];
+        
+        modalVC.searchCriteriaVC = self;
+        
+        if (self.propertyCriteria) {
+            modalVC.criteria = self.propertyCriteria[indexPath.row];
         }
-        else {
-            // Present Edit Search Criteria modal vc
-        }
+        
+        AW_NavigationController *navController = [[AW_NavigationController alloc]initWithRootViewController:modalVC];
+        
+        [self presentViewController:navController animated:YES completion:nil];
+
     }
     
     // SEARCH BUTTON
@@ -262,5 +272,36 @@
  
 }
 
+#pragma mark - Delegate methods
+-(void)databaseSelectorDidChangeDatabase
+{
+    self.shapeFamilyCriteria = nil;
+    self.propertyCriteria = nil;
+    
+    [self.tableView reloadData];
+}
+
+-(void)shapeFamilySelectorDidRemoveShapeFamily
+{
+    NSMutableArray *propertyCriteriaCollection = [self.propertyCriteria mutableCopy];
+    
+    NSSet *selectedShapeFamilies = [NSSet setWithArray:self.shapeFamilyCriteria];
+
+    // For each property criteria object
+    for (AW_PropertyCriteriaObject *propertyCriteria in propertyCriteriaCollection) {
+        
+        // If none of the selected shape families contain this property, then remove it from the property criteria colelction
+        if (![propertyCriteria.propertyDescription.shapeFamilies intersectsSet:selectedShapeFamilies]) {
+            [propertyCriteriaCollection removeObject:propertyCriteria];
+        }
+    }
+    
+    if ([propertyCriteriaCollection count] == 0) {
+        self.propertyCriteria = nil;
+    }
+    else {
+        self.propertyCriteria = [propertyCriteriaCollection copy];
+    }
+}
 
 @end

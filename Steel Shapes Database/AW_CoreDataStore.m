@@ -110,6 +110,8 @@
     return fetchedObjects[0];
 }
 
+
+
 #pragma mark - Releasing memory
 - (void)returnObjectToFault:(NSManagedObject *)object
 {

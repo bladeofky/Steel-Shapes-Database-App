@@ -13,11 +13,14 @@
 
 @interface AW_PropertyCriteriaObject : NSObject
 
-@property (nonatomic, strong) NSString *propertyDescriptionKey;
+@property (nonatomic, strong) AW_PropertyDescription *propertyDescription;
 @property (nonatomic) enum relationalOperator relationship;
-@property (nonatomic) double value;
+@property (nonatomic, strong) NSDecimalNumber *value;
+@property (nonatomic) BOOL isMetric;
 
 - (NSPredicate *)generatePredicate;
-- (NSAttributedString *)summary;
+- (NSAttributedString *)symbol;
+- (NSString *)relationshipSymbol;
+- (NSString *)units;
 
 @end

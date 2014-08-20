@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
+#import "AW_SearchCriteriaTableViewController.h"
 #import "AW_ShapeFamilySelectorModalTableViewController.h"
 #import "AW_ShapeFamily.h"
 
@@ -129,14 +130,16 @@
     
     cell.textLabel.text = family.displayName;
     cell.imageView.image = family.image;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     
     if ([self.selectedShapeFamilies containsObject:family]) {
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.highlighted = YES;
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.highlighted = NO;
     }
     
     return cell;
@@ -167,17 +170,25 @@
 #pragma mark - Navigation
 - (void)dismissSelfAndPassSelectedFamilies
 {
+    NSSet *oldSelectedShapeFamilies = [NSSet setWithArray:self.searchCriteriaVC.shapeFamilyCriteria];
+    NSSet *newSelectedShapeFamilies = [NSSet setWithArray:self.selectedShapeFamilies];
+    
+    // Pass back new shape families
     if ([self.selectedShapeFamilies count] == 0) {
         self.searchCriteriaVC.shapeFamilyCriteria = nil;
-        [self dismissSelf];
     }
     else {
         // Pass back selected shape families
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"defaultOrder" ascending:YES];
         self.searchCriteriaVC.shapeFamilyCriteria = [self.selectedShapeFamilies sortedArrayUsingDescriptors:@[sortDescriptor]];
-        
-        [self dismissSelf];
     }
+    
+    // Check if any shape families were removed (so that property criteria can be adjusted)
+    if (![oldSelectedShapeFamilies isSubsetOfSet:newSelectedShapeFamilies]) {
+        [self.searchCriteriaVC shapeFamilySelectorDidRemoveShapeFamily];
+    }
+    
+    [self dismissSelf];
 }
 
 - (void)dismissSelf

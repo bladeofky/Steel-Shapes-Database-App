@@ -24,4 +24,7 @@
 @property (nonatomic, strong) NSString * key;
 @property (nonatomic, strong) NSSet *shapeFamilies;
 
+-(NSAttributedString *)formattedSymbol;
+-(NSString *) formattedUnitsForUnitSystem:(BOOL)isMetric;
+
 @end

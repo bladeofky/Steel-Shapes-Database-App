@@ -77,9 +77,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.searchCriteriaVC.databaseCriteria = self.databaseList[indexPath.row];
-    [self.searchCriteriaVC.tableView reloadData];
-    [self dismissSelf];
+    if ([self.searchCriteriaVC.databaseCriteria isEqual:self.databaseList[indexPath.row]]) {
+        [self dismissSelf];
+    }
+    else {
+        self.searchCriteriaVC.databaseCriteria = self.databaseList[indexPath.row];
+        [self.searchCriteriaVC databaseSelectorDidChangeDatabase];
+        [self dismissSelf];
+    }
 }
 
 

@@ -6,8 +6,16 @@
 //  Copyright (c) 2014 Alan Wang. All rights reserved.
 //
 
-#import "AW_SearchCriteriaTableViewController.h"
+
 #import <UIKit/UIKit.h>
+
+@class AW_SearchCriteriaTableViewController;
+
+@protocol ShapeFamilySelectorDelegate <NSObject>
+
+-(void)shapeFamilySelectorDidRemoveShapeFamily;
+
+@end
 
 @interface AW_ShapeFamilySelectorModalTableViewController : UITableViewController
 

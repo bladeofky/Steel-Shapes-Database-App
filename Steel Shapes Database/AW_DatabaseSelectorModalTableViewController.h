@@ -10,6 +10,12 @@
 
 @class AW_SearchCriteriaTableViewController;
 
+@protocol DatabaseSelectorDelegate <NSObject>
+
+-(void)databaseSelectorDidChangeDatabase;
+
+@end
+
 @interface AW_DatabaseSelectorModalTableViewController : UITableViewController
 
 @property (nonatomic, weak) AW_SearchCriteriaTableViewController *searchCriteriaVC;
