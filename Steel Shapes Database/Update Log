@@ -1,4 +1,24 @@
 UPDATE LOG
+======= 2014-08-22 =======
+Search tab is now fully functional!
+
+Possible Future feature updates:
+- Either dynamically size property cell to show all description items or tap the scroll view to enlarge in a modal view. (currently there is a way to dynamically size the cell, but it has performs issues for iOS6 and below).
+- Add images to property descriptions
+- Store each database in a different persistant store so that they can be downloaded/deleted at will
+    - It is possible to use one persistant store coordinator with multiple stores
+    - We would want to not include the store with the bundle, but instead enable a way to download it from the web and keep it in the app's documents directory
+- Expand search to multiple properties
+    
+Next Steps:
+- Make UI improvements to Search Tab including:
+    - Perform search on a seperate thread
+    - Add column titles to search results view
+    - Have selected property start at top of table when entering property criteria editor view
+    - The first time property criteria editor view is opened, upon selection of a property, automatically transition to the next input.
+- Figure out a way to add an options menu to the AW_PropertyViewController in order to display options
+- Add databases
+
 ======= 2014-08-20 =======
 Implemented UI for Search tab. Added entry for property criteria and set up delegates so that if the database or shape families change, appropriate action is taken to remove properties or shape families that no longer belong.
 
@@ -8,6 +28,7 @@ Possible Future feature updates:
 - Store each database in a different persistant store so that they can be downloaded/deleted at will
     - It is possible to use one persistant store coordinator with multiple stores
     - We would want to not include the store with the bundle, but instead enable a way to download it from the web and keep it in the app's documents directory
+- Expand search to multiple properties
     
 Next Steps:
 - Continue to implement the search tab. Create the predicate and search Core Data.

@@ -7,12 +7,17 @@
 //
 
 #import "AW_SearchCriteriaTableViewController.h"
+#import "AW_SearchResultsTableViewController.h"
 #import "AW_ShapeFamily.h"
 #import "AW_PropertyCriteriaObject.h"
 #import "AW_PropertyDescription.h"
 #import "AW_AddPropertyCriteriaViewController.h"
 #import "AW_PropertyCriteriaTableViewCell.h"
 #import "AW_NavigationController.h"
+#import "AW_CoreDataStore.h"
+#import "AW_Shape.h"
+#import "AW_Property.h"
+#import "AW_MatchingShape.h"
 
 @interface AW_SearchCriteriaTableViewController ()
 
@@ -166,16 +171,20 @@
     
     // PROPERTY CRITERIA
     else if (section == 2) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"AW_PropertyCriteriaTableViewCell" forIndexPath:indexPath];
         
         if (!self.propertyCriteria) {
             // If no property criteria are present, present cell to select them
+            cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+            
             cell.textLabel.text = @"Add Search Criteria";
             cell.imageView.image = nil;
         }
         else {
             // Display property criteria
+            cell = [tableView dequeueReusableCellWithIdentifier:@"AW_PropertyCriteriaTableViewCell" forIndexPath:indexPath];
+            
             cell.textLabel.text = nil;
+            cell.imageView.image = nil;
             AW_PropertyCriteriaObject *propertyCriteriaObject = self.propertyCriteria[indexPath.row];
             AW_PropertyCriteriaTableViewCell *propertyCriteriaCell = (AW_PropertyCriteriaTableViewCell *)cell;
             propertyCriteriaCell.symbolLabel.attributedText = [propertyCriteriaObject symbol];
@@ -190,6 +199,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
         
         cell.textLabel.text = @"Search...";
+        cell.imageView.image = nil;
     }
     
     return cell;
@@ -256,6 +266,18 @@
     
     // SEARCH BUTTON
     else if (section == 3) {
+        AW_PropertyCriteriaObject *propertyCriteriaObject = self.propertyCriteria[0];
+        
+        // Perform search
+        NSArray *filteredShapes = [self performSearchWithShapeFamilies:self.shapeFamilyCriteria forPropertyCriteria:propertyCriteriaObject];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"imp_value" ascending:YES];
+        filteredShapes = [filteredShapes sortedArrayUsingDescriptors:@[sortDescriptor]];
+        
+        AW_SearchResultsTableViewController *searchResultsVC = [[AW_SearchResultsTableViewController alloc]initWithStyle:UITableViewStylePlain
+                                                                andData:filteredShapes];
+        
+        ((AW_NavigationController *)self.navigationController).unitSystem.selectedSegmentIndex = propertyCriteriaObject.isMetric;
+        [self.navigationController pushViewController:searchResultsVC animated:YES];
     }
 }
 
@@ -270,6 +292,83 @@
     [self.tableView reloadData];
     [self viewWillAppear:YES];  // Reset nav bar colors
  
+}
+
+-(NSArray *)performSearchWithShapeFamilies:(NSArray *)selectedShapeFamilies
+                       forPropertyCriteria:(AW_PropertyCriteriaObject *)propertyCriteria
+{
+    /*
+     Find AW_Shapes whose:
+     - Shape Family is in the set of selected shape families
+     - Have a property key matching the property criteria description's key
+     - Property's value matches the property criteria
+     
+     1) Create a set of all shapes from the selected shape families
+     2) Retrieve the property with matching key and test its value
+     */
+    
+    
+    // Collect all shapes from shape families
+    NSMutableSet *allShapes = [[NSMutableSet alloc]init];
+    for (AW_ShapeFamily *shapeFamily in selectedShapeFamilies) {
+        [allShapes addObjectsFromArray:shapeFamily.shapes.allObjects];
+    }
+    
+    // Filter based on criteria
+    NSMutableSet *filteredShapes = [[NSMutableSet alloc]init];
+    
+    for (AW_Shape *shape in allShapes) {
+
+        for (AW_Property *property in shape.properties) {
+            
+            if ([property.propertyDescription.key isEqual:propertyCriteria.propertyDescription.key]) {  //Matching property
+                
+                // Computer necessary comparison values
+                NSDecimalNumber *criteriaImpValue;
+                if (propertyCriteria.isMetric) {
+                    //self.value is a metric value and must be converted
+                    criteriaImpValue = [propertyCriteria.value decimalNumberByDividingBy:propertyCriteria.propertyDescription.impToMetFactor];
+                }
+                else {
+                    criteriaImpValue = propertyCriteria.value;
+                }
+                NSDecimalNumber *criteriaImpValuePlusThreshold = [criteriaImpValue decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"1.05"]];
+                NSDecimalNumber *criteriaImpValueMinusThreshold = [criteriaImpValue decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"0.95"]];
+                
+                // Test property criteria
+
+                if ( (propertyCriteria.relationship == GREATER_THAN && property.imp_value.doubleValue > criteriaImpValue.doubleValue) ||
+                     (propertyCriteria.relationship == GREATER_THAN_OR_EQUAL_TO && property.imp_value.doubleValue >= criteriaImpValue.doubleValue) ||
+                     (propertyCriteria.relationship == EQUAL_TO && property.imp_value.doubleValue >= criteriaImpValueMinusThreshold.doubleValue && property.imp_value.doubleValue <= criteriaImpValuePlusThreshold.doubleValue) ||
+                     (propertyCriteria.relationship == LESS_THAN_OR_EQUAL_TO && property.imp_value.doubleValue <= criteriaImpValue.doubleValue) ||
+                     (propertyCriteria.relationship == LESS_THAN && property.imp_value.doubleValue < criteriaImpValue.doubleValue)
+                    ) {
+                    // Criteria met: Add shape
+                    AW_MatchingShape *matchingShape = [[AW_MatchingShape alloc]init];
+                    matchingShape.property = property;
+                    matchingShape.imp_value = property.imp_value;
+                    matchingShape.shape = shape;
+                    [filteredShapes addObject:matchingShape];
+                }
+                else {
+                    // Do nothing
+                }
+                
+                break; // Matching property was found and actions taken. Move on to next shape.
+                
+            } //end if matching property
+            
+            else {
+                [[AW_CoreDataStore sharedStore]returnObjectToFault:property];
+            }
+            
+        } // end for each property
+        
+        [[AW_CoreDataStore sharedStore]returnObjectToFault:shape];
+        
+    } //end for each shape
+    
+    return filteredShapes.allObjects;
 }
 
 #pragma mark - Delegate methods

@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSDecimalNumber *value;
 @property (nonatomic) BOOL isMetric;
 
-- (NSPredicate *)generatePredicate;
+//- (NSPredicate *)generatePredicate;
 - (NSAttributedString *)symbol;
 - (NSString *)relationshipSymbol;
 - (NSString *)units;

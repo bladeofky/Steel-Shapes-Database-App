@@ -31,6 +31,8 @@
 		E79B124D199BF64100E6B8A2 /* ValueEntryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79B124C199BF64100E6B8A2 /* ValueEntryView.xib */; };
 		E79B1250199CFFA900E6B8A2 /* AW_DetailStyleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79B124F199CFFA900E6B8A2 /* AW_DetailStyleTableViewCell.m */; };
 		E79B125319A4DBF400E6B8A2 /* AW_TriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E79B125219A4DBF400E6B8A2 /* AW_TriangleView.m */; };
+		E79B125619A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79B125519A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.m */; };
+		E79B125919A7953900E6B8A2 /* AW_MatchingShape.m in Sources */ = {isa = PBXBuildFile; fileRef = E79B125819A7953900E6B8A2 /* AW_MatchingShape.m */; };
 		E7B1B2DE192D807D00054276 /* AW_ShapeFamilyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */; };
 		E7B1B2EE1931516800054276 /* AW_InfoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B1B2ED1931516800054276 /* AW_InfoBar.xib */; };
 		E7B1B2F11931541E00054276 /* AW_ShapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B1B2F01931541E00054276 /* AW_ShapeViewController.m */; };
@@ -112,6 +114,10 @@
 		E79B124F199CFFA900E6B8A2 /* AW_DetailStyleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_DetailStyleTableViewCell.m; sourceTree = "<group>"; };
 		E79B125119A4DBF400E6B8A2 /* AW_TriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_TriangleView.h; sourceTree = "<group>"; };
 		E79B125219A4DBF400E6B8A2 /* AW_TriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_TriangleView.m; sourceTree = "<group>"; };
+		E79B125419A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_SearchResultsTableViewController.h; sourceTree = "<group>"; };
+		E79B125519A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_SearchResultsTableViewController.m; sourceTree = "<group>"; };
+		E79B125719A7953900E6B8A2 /* AW_MatchingShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_MatchingShape.h; sourceTree = "<group>"; };
+		E79B125819A7953900E6B8A2 /* AW_MatchingShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_MatchingShape.m; sourceTree = "<group>"; };
 		E7B1B2DC192D807D00054276 /* AW_ShapeFamilyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AW_ShapeFamilyTableViewController.h; sourceTree = "<group>"; };
 		E7B1B2DD192D807D00054276 /* AW_ShapeFamilyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AW_ShapeFamilyTableViewController.m; sourceTree = "<group>"; };
 		E7B1B2DF192D92EA00054276 /* Update Log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Update Log"; sourceTree = "<group>"; };
@@ -232,18 +238,22 @@
 				E71CF0FE197DDDD100FDE2B8 /* AW_EnumHeader.h */,
 				E71CF0F8197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.h */,
 				E71CF0F9197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m */,
+				E79B125419A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.h */,
+				E79B125519A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.m */,
 				E71CF0FF197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.h */,
 				E71CF100197DF0CD00FDE2B8 /* AW_DatabaseSelectorModalTableViewController.m */,
 				E71CF10219808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.h */,
 				E71CF10319808F5F00FDE2B8 /* AW_ShapeFamilySelectorModalTableViewController.m */,
-				E71CF0FB197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.h */,
-				E71CF0FC197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m */,
 				E71CF10A198D46BF00FDE2B8 /* AW_AddPropertyCriteriaViewController.h */,
 				E71CF10B198D46C000FDE2B8 /* AW_AddPropertyCriteriaViewController.m */,
 				E79B124C199BF64100E6B8A2 /* ValueEntryView.xib */,
 				E71CF10C198D46C000FDE2B8 /* AW_AddPropertyCriteriaViewController.xib */,
 				E79B125119A4DBF400E6B8A2 /* AW_TriangleView.h */,
 				E79B125219A4DBF400E6B8A2 /* AW_TriangleView.m */,
+				E71CF0FB197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.h */,
+				E71CF0FC197DDA6E00FDE2B8 /* AW_PropertyCriteriaObject.m */,
+				E79B125719A7953900E6B8A2 /* AW_MatchingShape.h */,
+				E79B125819A7953900E6B8A2 /* AW_MatchingShape.m */,
 			);
 			name = "Search Tab";
 			sourceTree = "<group>";
@@ -489,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E79B125919A7953900E6B8A2 /* AW_MatchingShape.m in Sources */,
 				E7EEF1C21925AA5D0075D69B /* AW_Database.m in Sources */,
 				E7EEF1C31925AA5D0075D69B /* AW_Property.m in Sources */,
 				E7B1B2DE192D807D00054276 /* AW_ShapeFamilyTableViewController.m in Sources */,
@@ -511,6 +522,7 @@
 				E71CF0FA197DD98800FDE2B8 /* AW_SearchCriteriaTableViewController.m in Sources */,
 				E70E549D1953C87F00F42655 /* AW_FavoritedShape.m in Sources */,
 				E7EEF1B91925A98A0075D69B /* SteelShapesDatabase.xcdatamodeld in Sources */,
+				E79B125619A78F2A00E6B8A2 /* AW_SearchResultsTableViewController.m in Sources */,
 				E70E54A51954F03100F42655 /* AW_FavoritesStore.m in Sources */,
 				E76C4041193A7D2A00800FAA /* AW_PropertyTableViewCell.m in Sources */,
 				E7EEF1951925A8F80075D69B /* main.m in Sources */,
