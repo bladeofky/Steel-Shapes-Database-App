@@ -33,6 +33,8 @@
 
 @property (nonatomic, strong) NSArray *allProperties;
 
+@property (nonatomic) BOOL isFirstTime;
+
 @end
 
 @implementation AW_AddPropertyCriteriaViewController
@@ -46,9 +48,11 @@
         _criteria = [[AW_PropertyCriteriaObject alloc]init];
         
         _criteria.propertyDescription = self.allProperties[0];
-        _criteria.relationship = 2;
+        _criteria.relationship = 0;
         _criteria.value = [NSDecimalNumber decimalNumberWithString:@"0"];
         _criteria.isMetric = 0;
+        
+        self.isFirstTime = YES;
     }
     
     return _criteria;
@@ -111,9 +115,11 @@
     
     self.propertyDescriptionLabel.frame = CGRectMake(20, 8, scrollViewWidth - 40, 44);
     self.propertyTableView.frame = CGRectMake(0, self.propertyDescriptionLabel.frame.origin.y + self.propertyDescriptionLabel.frame.size.height + 8, scrollViewWidth, scrollViewHeight - (self.propertyDescriptionLabel.frame.size.height + 8));
+    self.propertyTableView.contentOffset = CGPointZero;
     
+    CGFloat pickerHeight = 216; // This is the height iOS always resizes the picker to
     self.relationshipPickerView.frame = CGRectMake(scrollViewWidth, 0, scrollViewWidth, scrollViewHeight);
-    self.relationshipPicker.frame = CGRectMake(20, 44, scrollViewWidth - 40, scrollViewHeight);
+    self.relationshipPicker.frame = CGRectMake(20, (scrollViewHeight - pickerHeight)/2, scrollViewWidth - 40, pickerHeight); // 20pt buffer on either side
     
     self.valueEntryView.frame = CGRectMake(scrollViewWidth * 2, 0, scrollViewWidth, scrollViewHeight);
     
@@ -211,6 +217,7 @@
     [self tableView:propertySelector willSelectRowAtIndexPath:initialPropertyDescriptionIndexPath];
     [propertySelector selectRowAtIndexPath:initialPropertyDescriptionIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     [self tableView:propertySelector didSelectRowAtIndexPath:initialPropertyDescriptionIndexPath];
+    [self scrollToPropertyInput];
     
     [self.relationshipPicker selectRow:self.criteria.relationship inComponent:0 animated:NO];
     
@@ -348,6 +355,10 @@
     [self.propertyDescriptionLabel setNeedsDisplay];
     [self.propertyTableView setNeedsDisplay];
     [self updatePropertyCriteriaDisplay];
+    
+    if (self.isFirstTime) {
+        [self scrollToRelationshipInput];
+    }
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -407,6 +418,11 @@
 {
     self.criteria.relationship = row;
     [self updatePropertyCriteriaDisplay];
+    
+    if (self.isFirstTime) {
+        [self scrollToValueInput];
+        self.isFirstTime = NO;
+    }
 }
 
 #pragma mark - Scroll View Delegate

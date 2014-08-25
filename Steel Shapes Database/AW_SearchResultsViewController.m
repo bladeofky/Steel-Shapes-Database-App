@@ -1,5 +1,5 @@
 //
-//  AW_SearchResultsTableViewController.m
+//  AW_SearchResultsViewController.m
 //  Shape DB
 //
 //  Created by Alan Wang on 8/22/14.
@@ -7,32 +7,23 @@
 //
 
 #import "AW_NavigationController.h"
-#import "AW_SearchResultsTableViewController.h"
+#import "AW_SearchResultsViewController.h"
 #import "AW_PropertyViewController.h"
 #import "AW_DetailStyleTableViewCell.h"
 #import "AW_MatchingShape.h"
 #import "AW_Property.h"
 #import "AW_Shape.h"
 
-@interface AW_SearchResultsTableViewController ()
+@interface AW_SearchResultsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *data;
+@property (nonatomic, weak) IBOutlet UILabel *symbolLabel;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSIndexPath *previousSelectionIndexPath;
 
 @end
 
-@implementation AW_SearchResultsTableViewController
-
-// Designated initializer
--(instancetype)initWithStyle:(UITableViewStyle)style andData:(NSArray *)data
-{
-    self = [super initWithStyle:style];
-    
-    if (self) {
-        _data = data;
-    }
-    
-    return self;
-}
+@implementation AW_SearchResultsViewController
 
 - (void)viewDidLoad
 {
@@ -57,7 +48,7 @@
         self.navigationItem.titleView = titleLabel;
     }
     
-    
+    self.symbolLabel.attributedText = self.symbol;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -179,12 +170,19 @@
     
     cell.textLabel.text = [numberFormatter stringFromNumber:value];
     
+    if ([self.previousSelectionIndexPath isEqual:indexPath]) {
+        [self.tableView selectRowAtIndexPath:self.previousSelectionIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
+    
     return cell;
 }
+
 
 #pragma mark - Table View Delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.previousSelectionIndexPath = indexPath;
+    
     AW_MatchingShape *matchingShape = self.data[indexPath.row];
     AW_PropertyViewController *propertyVC = [[AW_PropertyViewController alloc]initWithShape:matchingShape.shape];
     

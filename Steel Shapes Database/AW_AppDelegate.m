@@ -52,6 +52,7 @@
     browseNavController.tabBarItem.title = @"Browse";
     browseNavController.tabBarItem.image = [UIImage imageNamed:@"browseIcon.png"];
     searchNavController.tabBarItem.title = @"Search";
+    searchNavController.tabBarItem.image = [UIImage imageNamed:@"search.png"];
     aboutVC.tabBarItem.title = @"About";
     aboutVC.tabBarItem.image = [UIImage imageNamed:@"aboutIcon.png"];
     

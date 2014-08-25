@@ -7,7 +7,7 @@
 //
 
 #import "AW_SearchCriteriaTableViewController.h"
-#import "AW_SearchResultsTableViewController.h"
+#import "AW_SearchResultsViewController.h"
 #import "AW_ShapeFamily.h"
 #import "AW_PropertyCriteriaObject.h"
 #import "AW_PropertyDescription.h"
@@ -26,6 +26,9 @@
 @implementation AW_SearchCriteriaTableViewController
 
 #pragma mark - Custom accessors
+
+
+#pragma mark
 
 - (void)viewDidLoad
 {
@@ -61,6 +64,21 @@
     self.tabBarController.tabBar.tintColor = self.databaseCriteria.textColor;
         
     [self.tableView reloadData];
+    
+    NSIndexPath *bottomRow;
+    if (!self.databaseCriteria) {
+        bottomRow = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
+    else if (!self.shapeFamilyCriteria) {
+        bottomRow = [NSIndexPath indexPathForRow:0 inSection:1];
+    }
+    else if (!self.propertyCriteria) {
+        bottomRow = [NSIndexPath indexPathForRow:0 inSection:2];
+    }
+    else {
+        bottomRow = [NSIndexPath indexPathForRow:0 inSection:3];
+    }
+    [self.tableView scrollToRowAtIndexPath:bottomRow atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -144,10 +162,14 @@
         
         if (!self.databaseCriteria) {
             cell.textLabel.text = @"Select Database";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0]; // Match default button tint blue
             cell.imageView.image = nil;
         }
         else {
             cell.textLabel.text = self.databaseCriteria.longName;
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
+            cell.textLabel.textColor = [UIColor blackColor];
             cell.imageView.image = nil;
         }
     }
@@ -159,12 +181,16 @@
         if (!self.shapeFamilyCriteria) {
             // If no shape families selected, present cell to select them
             cell.textLabel.text = @"Select Shape(s)";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0]; // Match default button tint blue
             cell.imageView.image = nil;
         }
         else {
             // Display the titles and images of each shape family selected
             AW_ShapeFamily *shapeFamily = self.shapeFamilyCriteria[indexPath.row];
             cell.textLabel.text = shapeFamily.displayName;
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
+            cell.textLabel.textColor = [UIColor blackColor];
             cell.imageView.image = shapeFamily.image;
         }
     }
@@ -177,6 +203,8 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
             
             cell.textLabel.text = @"Add Search Criteria";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.textColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0]; // Match default button tint blue
             cell.imageView.image = nil;
         }
         else {
@@ -184,6 +212,8 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"AW_PropertyCriteriaTableViewCell" forIndexPath:indexPath];
             
             cell.textLabel.text = nil;
+            cell.textLabel.textAlignment = NSTextAlignmentLeft;
+            cell.textLabel.textColor = [UIColor blackColor];
             cell.imageView.image = nil;
             AW_PropertyCriteriaObject *propertyCriteriaObject = self.propertyCriteria[indexPath.row];
             AW_PropertyCriteriaTableViewCell *propertyCriteriaCell = (AW_PropertyCriteriaTableViewCell *)cell;
@@ -198,7 +228,9 @@
     else if (section == 3) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
         
-        cell.textLabel.text = @"Search...";
+        cell.textLabel.text = @"Perform Search";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textColor = [UIColor colorWithRed:0 green:0.478431 blue:1.0 alpha:1.0]; // Match default button tint blue
         cell.imageView.image = nil;
     }
     
@@ -268,13 +300,13 @@
     else if (section == 3) {
         AW_PropertyCriteriaObject *propertyCriteriaObject = self.propertyCriteria[0];
         
-        // Perform search
         NSArray *filteredShapes = [self performSearchWithShapeFamilies:self.shapeFamilyCriteria forPropertyCriteria:propertyCriteriaObject];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"imp_value" ascending:YES];
         filteredShapes = [filteredShapes sortedArrayUsingDescriptors:@[sortDescriptor]];
-        
-        AW_SearchResultsTableViewController *searchResultsVC = [[AW_SearchResultsTableViewController alloc]initWithStyle:UITableViewStylePlain
-                                                                andData:filteredShapes];
+    
+        AW_SearchResultsViewController *searchResultsVC = [[AW_SearchResultsViewController alloc]initWithNibName:@"AW_SearchResultsViewController" bundle:[NSBundle mainBundle]];
+        searchResultsVC.data = filteredShapes;
+        searchResultsVC.symbol = [propertyCriteriaObject.propertyDescription formattedSymbol];
         
         ((AW_NavigationController *)self.navigationController).unitSystem.selectedSegmentIndex = propertyCriteriaObject.isMetric;
         [self.navigationController pushViewController:searchResultsVC animated:YES];
@@ -332,8 +364,8 @@
                 else {
                     criteriaImpValue = propertyCriteria.value;
                 }
-                NSDecimalNumber *criteriaImpValuePlusThreshold = [criteriaImpValue decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"1.05"]];
-                NSDecimalNumber *criteriaImpValueMinusThreshold = [criteriaImpValue decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"0.95"]];
+                NSDecimalNumber *criteriaImpValuePlusThreshold = [criteriaImpValue decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"1.03"]];
+                NSDecimalNumber *criteriaImpValueMinusThreshold = [criteriaImpValue decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"0.97"]];
                 
                 // Test property criteria
 
@@ -402,5 +434,6 @@
         self.propertyCriteria = [propertyCriteriaCollection copy];
     }
 }
+
 
 @end
